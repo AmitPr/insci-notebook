@@ -17,5 +17,5 @@ html_exporter = HTMLExporter(config=c,template_name='test')
 (body, resources) = html_exporter.from_notebook_node(notebook)
 
 #Export output to file
-with open('example-out.html','w+') as f:
+with open(PATH / 'example-out.html','w+') as f:
     f.write(body)
