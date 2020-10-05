@@ -23,9 +23,9 @@
 
 {% block input %}
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-{{ cell.source | replace('\n','<br>') }}
-     </div>
+     <textarea class="CodeMirror-textarea">
+{{ cell.source }}
+     </textarea>
 </div>
 {%- endblock input %}
 

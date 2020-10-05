@@ -14,7 +14,11 @@
 
 {%- block html_head_js -%}
 {%- block html_head_js_requirejs -%}
-<script src="{{ resources.require_js_url }}"></script>
+
+<script src="codemirror.js"></script>
+<link rel="stylesheet" href="codemirror.css">
+<script src="python.js"></script>
+
 {%- endblock html_head_js_requirejs -%}
 {%- endblock html_head_js -%}
 
@@ -91,6 +95,31 @@ a.anchor-link {
 {% block footer_js %}
 {% endblock footer_js %}
 {{ super() }}
+
+<script>
+    // Creates the code editor from a target textarea using the CodeMirror library.
+    var codeCells = document.getElementsByClassName("CodeMirror-textarea");
+    for (var i = 0; i < codeCells.length; i++) {
+      var editor = CodeMirror.fromTextArea(codeCells.item(i), {
+          mode: {
+              name: "python",
+              version: 3,
+              singleLineStringErrors: false
+          },
+          lineNumbers: true,
+          indentUnit: 4,
+          matchBrackets: true,
+          theme: 'base16-dark'
+      });
+      //Make sure that tabs & spaces are consistent
+      editor.setOption("extraKeys", {
+          Tab: function (cm) {
+              var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+              cm.replaceSelection(spaces);
+          }
+      });
+    }
+</script>
 </html>
 {% endblock footer %}
 
