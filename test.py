@@ -13,8 +13,7 @@ c.HTMLExporter.extra_template_basedirs=[PATH]
 with open('example.ipynb','r+') as f:
     notebook = nbformat.reads('\n'.join(f.readlines()),as_version=nbformat.NO_CONVERT)
 
-html_exporter = HTMLExporter(config=c)
-html_exporter.template_name = 'test'
+html_exporter = HTMLExporter(config=c,template_name='test')
 (body, resources) = html_exporter.from_notebook_node(notebook)
 
 #Export output to file
