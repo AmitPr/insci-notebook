@@ -1,6 +1,7 @@
 from traitlets.config import Config
 import nbformat
 from nbconvert import HTMLExporter
+from LiveHTMLExporter import LiveHTMLExporter
 import pathlib
 
 c = Config()
@@ -13,7 +14,7 @@ c.HTMLExporter.extra_template_basedirs=[PATH]
 with open('example.ipynb','r+') as f:
     notebook = nbformat.reads('\n'.join(f.readlines()),as_version=nbformat.NO_CONVERT)
 
-html_exporter = HTMLExporter(config=c,template_name='test', theme='dark')
+html_exporter = LiveHTMLExporter(config=c,template_name='test', theme='light')
 (body, resources) = html_exporter.from_notebook_node(notebook)
 print(resources.keys())
 

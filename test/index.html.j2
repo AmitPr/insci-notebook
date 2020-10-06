@@ -106,10 +106,11 @@ a.anchor-link {
               version: 3,
               singleLineStringErrors: false
           },
-          lineNumbers: true,
           indentUnit: 4,
           matchBrackets: true,
-          theme: 'base16-dark'
+          theme: 'jupyter', //Use 'hopscotch' for dark-mode
+          viewportMargin: Infinity,
+          scrollbarStyle: "null"
       });
       //Make sure that tabs & spaces are consistent
       editor.setOption("extraKeys", {

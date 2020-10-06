@@ -23,9 +23,7 @@
 
 {% block input %}
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <textarea class="CodeMirror-textarea">
-{{ cell.source }}
-     </textarea>
+     <textarea class="CodeMirror-textarea">{{ cell.source | format_code() }}</textarea>
 </div>
 {%- endblock input %}
 
