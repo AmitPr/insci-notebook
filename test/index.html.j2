@@ -14,11 +14,16 @@
 
 {%- block html_head_js -%}
 {%- block html_head_js_requirejs -%}
-
+<!--Codemirror imports-->
 <script src="codemirror.js"></script>
 <link rel="stylesheet" href="codemirror.css">
-<script src="python.js"></script>
-
+<script src="pythonHighlighter.js"></script>
+<!--Pyodide imports-->
+<script src="https://pyodide-cdn2.iodide.io/v0.15.0/full/pyodide.js"></script>
+<script src="pyodideWrapper.js"></script>
+<script>
+  window.pyodideWrapper = new PyodideWrapper();
+</script>
 {%- endblock html_head_js_requirejs -%}
 {%- endblock html_head_js -%}
 
@@ -106,18 +111,20 @@ a.anchor-link {
               version: 3,
               singleLineStringErrors: false
           },
+          extraKeys: {
+              'Tab': function (cm) {
+                var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+                cm.replaceSelection(spaces);
+              },
+              'Shift-Enter': function(cm) { 
+                window.pyodideWrapper.runPython(cm);
+              },
+          },
           indentUnit: 4,
           matchBrackets: true,
           theme: 'jupyter', //Use 'hopscotch' for dark-mode
           viewportMargin: Infinity,
-          scrollbarStyle: "null"
-      });
-      //Make sure that tabs & spaces are consistent
-      editor.setOption("extraKeys", {
-          Tab: function (cm) {
-              var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
-              cm.replaceSelection(spaces);
-          }
+          scrollbarStyle: "null",
       });
     }
 </script>

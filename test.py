@@ -11,7 +11,7 @@ PATH = pathlib.Path(__file__).parent.absolute()
 c.HTMLExporter.extra_template_basedirs=[PATH]
 
 #Read in example
-with open('example.ipynb','r+') as f:
+with open('Time_Space_Complexity.ipynb','r+') as f:
     notebook = nbformat.reads('\n'.join(f.readlines()),as_version=nbformat.NO_CONVERT)
 
 html_exporter = LiveHTMLExporter(config=c,template_name='test', theme='light')
