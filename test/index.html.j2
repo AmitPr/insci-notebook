@@ -17,12 +17,21 @@
 <!--Codemirror imports-->
 <script src="codemirror.js"></script>
 <link rel="stylesheet" href="codemirror.css">
-<script src="pythonHighlighter.js"></script>
+<script src="highlight/python.js"></script>  
+<script src="highlight/markdown.js"></script>  
+<!--Marked - Markdown Renderer-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.1.1/marked.min.js"></script>
 <!--Pyodide imports-->
 <script src="https://pyodide-cdn2.iodide.io/v0.15.0/full/pyodide.js"></script>
 <script src="pyodideWrapper.js"></script>
+<script src="cellManager.js"></script>
 <script>
-  window.pyodideWrapper = new PyodideWrapper();
+  cellManager = new CellManager();
+  window.toggleMarkdownCell = function(e){
+    e.parentNode.querySelector('.Cell-MarkdownSource').style.display='';
+    e.parentNode.querySelector('.CodeMirror').CodeMirror.refresh();
+    e.style.display='none';
+  }
 </script>
 {%- endblock html_head_js_requirejs -%}
 {%- endblock html_head_js -%}
@@ -107,9 +116,10 @@ a.anchor-link {
     for (var i = 0; i < codeCells.length; i++) {
       var editor = CodeMirror.fromTextArea(codeCells.item(i), {
           mode: {
-              name: "python",
+              name: codeCells.item(i).dataset["mimeType"],
               version: 3,
-              singleLineStringErrors: false
+              singleLineStringErrors: false,
+              fencedCodeBlockDefaultMode: 'python'
           },
           extraKeys: {
               'Tab': function (cm) {
@@ -117,7 +127,7 @@ a.anchor-link {
                 cm.replaceSelection(spaces);
               },
               'Shift-Enter': function(cm) { 
-                window.pyodideWrapper.runPython(cm);
+                cellManager.handleRunCommand(cm);
               },
           },
           indentUnit: 4,
@@ -126,7 +136,12 @@ a.anchor-link {
           viewportMargin: Infinity,
           scrollbarStyle: "null",
       });
-    }
+    }/*
+    var md = document.getElementsByClassName("Cell-MarkdownSource");
+    for (var i = 0; i < md.length; i++) {
+      md2html = marked(md.item(i).querySelector('pre').textContent);
+      md.item(i).parentElement.querySelector('.jp-RenderedMarkdown').innerHTML=md2html;
+    }*/
 </script>
 </html>
 {% endblock footer %}

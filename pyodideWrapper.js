@@ -5,7 +5,7 @@ class PyodideWrapper {
         //Will Capture print() statements from python
         window.logger = new Object();
         window.logger.print = function (message) {
-            window.pyodideWrapper.renderOutput(message);
+            cellManager.pyodide.renderOutput(message);
         }
         languagePluginLoader.then(() => {
             pyodide.runPython(

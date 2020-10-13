@@ -8,7 +8,7 @@
 {%- if not resources.global_content_filter.include_input -%}
 {%- set no_input_class="jp-mod-noInput" -%}
 {%- endif -%}
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell {{ no_output_class }} {{ no_input_class }} {{ celltags(cell) }}">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell {{ no_output_class }} {{ no_input_class }} {{ celltags(cell) }}" data-type="python">
 {{ super() }}
 </div>
 {%- endblock codecell %}
@@ -23,7 +23,7 @@
 
 {% block input %}
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <textarea class="CodeMirror-textarea">{{ cell.source | format_code() }}</textarea>
+     <textarea class="CodeMirror-textarea" data-mime-type="text/x-python">{{ cell.source | format_code() }}</textarea>
 </div>
 {%- endblock input %}
 
@@ -83,12 +83,15 @@
 {% endblock output %}
 
 {% block markdowncell scoped %}
+<div class="jp-Cell jp-Notebook-cell" data-type="markdown">
 <div class="jp-Cell-inputWrapper">
 {%- if resources.global_content_filter.include_input_prompt-%}
     {{ self.empty_in_prompt() }}
 {%- endif -%}
-<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput {{ celltags(cell) }}" data-mime-type="text/markdown">
-{{ cell.source  | markdown2html | strip_files_prefix }}
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor Cell-MarkdownSource" data-type="inline" style="display: none;">
+    <textarea class="CodeMirror-textarea" data-mime-type="text/x-markdown">{{cell.source}}</textarea>
+</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput {{ celltags(cell) }}" data-mime-type="text/markdown" ondblclick="toggleMarkdownCell(this)">{{cell.source | markdown2html | strip_files_prefix}}</div>
 </div>
 </div>
 {%- endblock markdowncell %}
