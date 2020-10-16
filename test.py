@@ -3,6 +3,7 @@ import nbformat
 from nbconvert import HTMLExporter
 from LiveHTMLExporter import LiveHTMLExporter
 import pathlib
+import sys
 
 c = Config()
 
@@ -11,7 +12,7 @@ PATH = pathlib.Path(__file__).parent.absolute()
 c.HTMLExporter.extra_template_basedirs=[PATH]
 
 #Read in example
-with open('Time_Space_Complexity.ipynb','r+') as f:
+with open(sys.argv[1],'r+') as f:
     notebook = nbformat.reads('\n'.join(f.readlines()),as_version=nbformat.NO_CONVERT)
 
 html_exporter = LiveHTMLExporter(config=c,template_name='test', theme='light')
@@ -19,5 +20,5 @@ html_exporter = LiveHTMLExporter(config=c,template_name='test', theme='light')
 print(resources.keys())
 
 #Export output to file
-with open(PATH / 'example-out.html','w+') as f:
+with open(PATH / sys.argv[2],'w+') as f:
     f.write(body)
