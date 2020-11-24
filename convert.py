@@ -15,7 +15,7 @@ c.HTMLExporter.extra_template_basedirs=[PATH]
 with open(sys.argv[1],'r+') as f:
     notebook = nbformat.reads('\n'.join(f.readlines()),as_version=nbformat.NO_CONVERT)
 
-html_exporter = LiveHTMLExporter(config=c,template_name='test', theme='light')
+html_exporter = LiveHTMLExporter(config=c,template_name='insci-template', theme='light')
 (body, resources) = html_exporter.from_notebook_node(notebook)
 print(resources.keys())
 

@@ -22,7 +22,7 @@ class PyodideWrapper {
         });
     }
     runPython(cm) {
-        this.currentCell = cm.getTextArea().closest(".jp-Cell");
+        this.currentCell = cm.getTextArea().closest(".Cell");
         this.resetOutput();
         try {
             this.renderOutput(pyodide.runPython(cm.getValue()));
@@ -32,10 +32,10 @@ class PyodideWrapper {
     }
     renderOutput(output) {
         var formatted = this.formatOutput(output);
-        this.currentCell.querySelector('.jp-OutputArea-output').innerHTML += formatted;
+        this.currentCell.querySelector('.jp-OutputArea-output pre').innerHTML += formatted;
     }
     resetOutput() {
-        this.currentCell.querySelector('.jp-OutputArea-output').innerHTML = "";
+        this.currentCell.querySelector('.jp-OutputArea-output pre').innerHTML = "";
     }
     formatOutput(output) {
         if (typeof output == "undefined") {

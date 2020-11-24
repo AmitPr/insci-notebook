@@ -3,8 +3,10 @@ class CellManager {
     constructor() {
         this.pyodide = new PyodideWrapper();
     }
-    handleRunCommand(cm) {
-        this.evalCell(cm.getWrapperElement().closest('.jp-Cell'), cm);
+    handleRunCommand(el) {
+        var cell = el.closest('.Cell');
+        var cm = cell.querySelector('.CodeMirror').CodeMirror;
+        this.evalCell(cell, cm);
     }
     evalCell(cell, cm) {
         var cellType = cell.dataset['type'];

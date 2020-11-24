@@ -8,50 +8,43 @@
 {%- if not resources.global_content_filter.include_input -%}
 {%- set no_input_class="jp-mod-noInput" -%}
 {%- endif -%}
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell {{ no_output_class }} {{ no_input_class }} {{ celltags(cell) }}" data-type="python">
+<div class="Cell Code-cell {{ no_output_class }} {{ no_input_class }} {{ celltags(cell) }}" data-type="python">
 {{ super() }}
 </div>
 {%- endblock codecell %}
 
 {% block input_group -%}
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
+<div class="Cell-input">
 {{ super() }}
-</div>
 </div>
 {% endblock input_group %}
 
 {% block input %}
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-CodeMirrorEditor jp-Editor Input-editor" data-type="inline">
      <textarea class="CodeMirror-textarea" data-mime-type="text/x-python">{{ cell.source | format_code() }}</textarea>
 </div>
 {%- endblock input %}
 
 {% block output_group %}
-<div class="jp-Cell-outputWrapper">
+<div class="Cell-output">
 {{ super() }}
 </div>
 {% endblock output_group %}
 
 {% block outputs %}
-<div class="jp-OutputArea jp-Cell-outputArea">
 {{ super() }}
-</div>
 {% endblock outputs %}
 
 {% block in_prompt -%}
-<div class="jp-InputPrompt jp-InputArea-prompt">
-    {%- if cell.execution_count is defined -%}
-        In&nbsp;[{{ cell.execution_count|replace(None, "&nbsp;") }}]:
-    {%- else -%}
-        In&nbsp;[&nbsp;]:
-    {%- endif -%}
+<div class="Cell-input-actions">
+    <button class="Code-cell-run" onclick="cellManager.handleRunCommand(this)">
+        <h3>Run</h3>
+    </button>
 </div>
 {%- endblock in_prompt %}
 
 {% block empty_in_prompt -%}
-<div class="jp-InputPrompt jp-InputArea-prompt">
-</div>
+<div class="Cell-input-actions"></div>
 {%- endblock empty_in_prompt %}
 
 {#
@@ -62,29 +55,18 @@
 {% endblock output_prompt %}
 
 {% block output_area_prompt %}
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">
-{%- if output.output_type == 'execute_result' -%}
-    {%- if cell.execution_count is defined -%}
-        Out[{{ cell.execution_count|replace(None, "&nbsp;") }}]:
-    {%- else -%}
-        Out[&nbsp;]:
-    {%- endif -%}
-{%- endif -%}
-    </div>
 {% endblock output_area_prompt %}
 
 {% block output %}
-<div class="jp-OutputArea-child">
 {% if resources.global_content_filter.include_output_prompt %}
     {{ self.output_area_prompt() }}
 {% endif %}
 {{ super() }}
-</div>
 {% endblock output %}
 
 {% block markdowncell scoped %}
-<div class="jp-Cell jp-Notebook-cell" data-type="markdown">
-<div class="jp-Cell-inputWrapper">
+<div class="Cell" data-type="markdown">
+<div class="Cell-input">
 {%- if resources.global_content_filter.include_input_prompt-%}
     {{ self.empty_in_prompt() }}
 {%- endif -%}
