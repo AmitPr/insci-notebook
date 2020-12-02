@@ -29,10 +29,10 @@ class StaticResourceFilter:
         inp : str
             string to output
         """
-        prefix = ""
-        if sys.argv[3]:
-            prefix=sys.argv[3]
-        return prefix+'/'+inp
+        prefix = ''
+        if len(sys.argv)>3:
+            prefix=sys.argv[3]+'/'
+        return prefix+inp
 
 class DebugFilter:
     def __call__(self, inp):

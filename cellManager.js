@@ -15,16 +15,26 @@ class CellManager {
                 this.pyodide.runPython(cm);
                 break;
             case 'markdown':
-                this.runMarkdownCell(cell,cm);
+                this.runMarkdownCell(cell, cm);
                 break;
             default:
                 break;
         }
     }
-    runMarkdownCell(cell,cm){
-        cell.querySelector(".jp-MarkdownOutput").innerHTML=marked(cm.getValue());
-        cell.querySelector('.Cell-MarkdownSource').style.display='none';
-        cell.querySelector('.jp-MarkdownOutput').style.display='';
+    runMarkdownCell(cell, cm) {
+        cell.querySelector(".jp-MarkdownOutput").innerHTML = marked(cm.getValue());
+        cell.querySelector('.Cell-MarkdownSource').style.display = 'none';
+        cell.querySelector('.jp-MarkdownOutput').style.display = '';
+        window.renderMathInElement(cell.querySelector(".jp-MarkdownOutput"),
+            {
+                ignoredTags: [],
+                delimiters:[
+                    { left: "$$", right: "$$", display: true },
+                    { left: "$", right: "$", display: false },
+                    { left: "\\(", right: "\\)", display: false },
+                    { left: "\\[", right: "\\]", display: true }
+                ]
+        });
     }
 }
 
