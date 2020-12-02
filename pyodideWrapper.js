@@ -35,7 +35,15 @@ class PyodideWrapper {
         this.currentCell.querySelector('.jp-OutputArea-output pre').innerHTML += formatted;
     }
     resetOutput() {
-        this.currentCell.querySelector('.jp-OutputArea-output pre').innerHTML = "";
+        var out = this.currentCell.querySelector('.jp-OutputArea-output pre');
+        if(out){
+            out.innerHTML = "";
+        }else{
+            var container = document.createElement("div");
+            container.classList.add("Cell-output");
+            this.currentCell.appendChild(container);
+            this.currentCell.innerHTML+='<div class="Cell-output"><div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain"><pre></pre></div></div>';
+        }
     }
     formatOutput(output) {
         if (typeof output == "undefined") {

@@ -2,7 +2,7 @@
     .cm-s-one-theme.CodeMirror {
         background: #fafafa;
         color: #383a42;
-        font: 300 14px 'Fira Mono', monospace;
+        font: 300 13px 'Fira Mono', monospace;
     }
     .cm-s-one-theme div.CodeMirror-selected {background: #ededed !important;}
     .cm-s-one-theme .CodeMirror-gutters {background: #fafafa; border-right: 0px;}
@@ -33,7 +33,7 @@
     .cm-s-one-theme.CodeMirror {
         background: #282c34;
         color: #abb2bf;
-        font: 300 14px 'Fira Mono', monospace;
+        font: 300 13px 'Fira Mono', monospace;
     }
     .cm-s-one-theme div.CodeMirror-selected {background:#3a3f4b !important;}
     .cm-s-one-theme .CodeMirror-gutters {background: #282c34; border-right: 0px;}
