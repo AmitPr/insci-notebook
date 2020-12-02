@@ -35,13 +35,13 @@
 @media (prefers-color-scheme: dark) {
     body {
         color: #abb2bf;
-        background: #0F111A;
+        background: #212121;
     }
     code {
-        background: #3a3f4b;
+        background: #424242;
     }
     .jp-MarkdownOutput pre code {
-        background-color: #0F111A;
+        background-color: #212121;
     }
     .Cell-output {
         background: #3a3f4b;
@@ -55,10 +55,10 @@
         color: rgba(171, 178, 191, 0.87);
     }
     tbody tr:nth-child(2n) {
-        background: #171a28;
+        background: #424242;
     }
     tbody tr:nth-child(2n+1) {
-        background: #0F111A;
+        background: #212121;
     }
     h1, h2, h3, h4, h5, h6 {
         color: #abb2bf;
@@ -68,8 +68,8 @@
 
 body {
     font-family: 'Fira Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 1em;
+    font-weight: 400;
 }
 
 /* Markdown Formatting */
@@ -79,23 +79,23 @@ h1 {
 }
 
 h2 {
-    font-size: 1.7em;
+    font-size: 1.8em;
 }
 
 h3 {
-    font-size: 1.4em;
+    font-size: 1.5em;
 }
 
 h4 {
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 
 h5 {
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 h6 {
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 code {
