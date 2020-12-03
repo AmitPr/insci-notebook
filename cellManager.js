@@ -36,6 +36,9 @@ class CellManager {
                 ]
         });
     }
+    createCell(){
+        
+    }
 }
 
 class Cell {
