@@ -1,7 +1,6 @@
-window.languagePluginUrl = 'https://pyodide-cdn2.iodide.io/v0.15.0/full/'
-
 class PyodideWrapper {
     constructor() {
+        window.languagePluginUrl = 'https://pyodide-cdn2.iodide.io/v0.15.0/full/'
         //Will Capture print() statements from python
         window.logger = new Object();
         window.logger.print = function (message) {
@@ -59,3 +58,4 @@ class PyodideWrapper {
             .replace("\n", "<br>");
     }
 }
+export {PyodideWrapper};

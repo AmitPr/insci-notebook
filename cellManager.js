@@ -1,4 +1,3 @@
-window.languagePluginUrl = 'https://pyodide-cdn2.iodide.io/v0.15.0/full/'
 class CellManager {
     constructor() {
         this.pyodide = new PyodideWrapper();
@@ -37,12 +36,8 @@ class CellManager {
         });
     }
     createCell(){
-        
+
     }
 }
 
-class Cell {
-    constructor(type) {
-        this.type = type;
-    }
-}
+export {CellManager};
