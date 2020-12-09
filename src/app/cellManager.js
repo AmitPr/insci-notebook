@@ -1,6 +1,13 @@
+/*import PyodideWrapper from './pyodideWrapper.js';
+*/
+
+import {Cell} from './cell.js';
+
+
 class CellManager {
     constructor() {
-        this.pyodide = new PyodideWrapper();
+        //this.pyodide = new PyodideWrapper();
+        this.cells = [];
     }
     handleRunCommand(el) {
         var cell = el.closest('.Cell');
@@ -27,17 +34,23 @@ class CellManager {
         window.renderMathInElement(cell.querySelector(".jp-MarkdownOutput"),
             {
                 ignoredTags: [],
-                delimiters:[
+                delimiters: [
                     { left: "$$", right: "$$", display: true },
                     { left: "$", right: "$", display: false },
                     { left: "\\(", right: "\\)", display: false },
                     { left: "\\[", right: "\\]", display: true }
                 ]
-        });
+            });
     }
-    createCell(){
-
+    createCell(cell) {
+        var cellType = cell["type"];
+        var cellContent = cell["content"].join("\n");
+        var cellContainer = document.createElement('div');
+        document.body.appendChild(cellContainer);
+        var c = new Cell(cellContainer,cellType,cellContent);
+        this.cells.push(c);
     }
 }
 
-export {CellManager};
+
+export { CellManager };

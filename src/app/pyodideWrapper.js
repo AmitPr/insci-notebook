@@ -1,3 +1,5 @@
+import './pyodide/pyodide.js';
+
 class PyodideWrapper {
     constructor() {
         window.languagePluginUrl = 'https://pyodide-cdn2.iodide.io/v0.15.0/full/'
@@ -25,7 +27,7 @@ class PyodideWrapper {
         this.resetOutput();
         try {
             this.renderOutput(pyodide.runPython(cm.getValue()));
-        }catch(err){
+        } catch (err) {
             this.renderOutput(err);
         }
     }
@@ -35,13 +37,13 @@ class PyodideWrapper {
     }
     resetOutput() {
         var out = this.currentCell.querySelector('.jp-OutputArea-output pre');
-        if(out){
+        if (out) {
             out.innerHTML = "";
-        }else{
+        } else {
             var container = document.createElement("div");
             container.classList.add("Cell-output");
             this.currentCell.appendChild(container);
-            this.currentCell.innerHTML+='<div class="Cell-output"><div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain"><pre></pre></div></div>';
+            this.currentCell.innerHTML += '<div class="Cell-output"><div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain"><pre></pre></div></div>';
         }
     }
     formatOutput(output) {
@@ -58,4 +60,4 @@ class PyodideWrapper {
             .replace("\n", "<br>");
     }
 }
-export {PyodideWrapper};
+export { PyodideWrapper };
