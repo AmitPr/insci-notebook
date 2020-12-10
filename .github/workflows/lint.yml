@@ -21,4 +21,4 @@ jobs:
       run: yarn run lint
     - name: Lint python with black
       run: |
-        black .D
+        black .
