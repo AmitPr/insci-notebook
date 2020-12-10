@@ -1,5 +1,4 @@
 import { languagePluginLoader } from './pyodide/pyodide.js';
-import CodeMirror from 'codemirror';
 import { PythonCell } from './cells/pythonCell.js';
 
 declare global {

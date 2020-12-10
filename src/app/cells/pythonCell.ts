@@ -1,4 +1,3 @@
-import { CellManager } from "../cellManager";
 import { Cell } from "./cell";
 
 class PythonCell extends Cell {

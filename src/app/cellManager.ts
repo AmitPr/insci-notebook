@@ -45,8 +45,7 @@ class CellManager {
     newCell(): void {
         const cellContainer: HTMLElement = document.createElement("div");
         document.body.appendChild(cellContainer);
-        let c: Cell;
-        c = new PythonCell(cellContainer, "python", "");
+        const c: Cell = new PythonCell(cellContainer, "python", "");
         this.cells.push(c);
     }
 
