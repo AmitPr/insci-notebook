@@ -24,6 +24,7 @@
     "webpack-cli": "^4.2.0"
   },
   "scripts": {
-    "lint": "eslint . --ext .ts --fix"
+    "lint": "eslint . --ext .ts --fix",
+    "pack": "webpack -c webpack.config.js"
   }
 }

@@ -10,42 +10,64 @@ import '../codemirror-modes/markdown.js';
 import '../codemirror-modes/python.js';
 
 
-import '../style/one-theme.css';
+import '../../style/one-theme.css';
 
 abstract class Cell {
     container: HTMLElement;
-    type: string;
-    content: string;
+    _content: string;
+
+    private _type: string;
+    get type(): string {
+        return this._type;
+    }
+    set type(value: string) {
+        this._type = value;
+    }
+
+    get content(): string {
+        if(this.editor===undefined){
+            return this._content;
+        }
+        return this.editor.getValue();
+    }
+    set content(value: string) {
+        this.editor.setValue(value);
+    }
+
     editor: CodeMirror.Editor;
     outputWrapper: HTMLElement;
+
     constructor(container: HTMLElement, type: string, content: string) {
         CodeMirror.fromTextArea
         this.container = container;
-        this.type = type;
-        this.content = content;
+        this._type = type;
+        this._content=content;
+        this.renderCell();
+        this.editor = this.initCodeMirror(content);
+        this.setEditorDisplay(true);
+        this.outputWrapper = this.container.querySelector(".cell-output") as HTMLElement;
+    }
+
+    abstract runCell(): void;
+
+    renderCell(): void {
         render(this.container, html`
         <div>
             <textarea id="cm-textarea">${this.content}</textarea>
             <div class = "cell-output"></div>
         </div>`);
-        this.editor = this.initCodeMirror();
-        this.editor.getWrapperElement().style.display = 'block';
-        this.outputWrapper = this.container.querySelector(".cell-output") as HTMLElement;
-        this.renderOutput();
     }
 
-    abstract renderOutput(): void;
-
-    toggleEditorDisplay(forceHide = false) : void{
+    setEditorDisplay(visible = false): void {
         const wrapper = this.editor.getWrapperElement();
-        if (wrapper.style.display == 'block' || forceHide) {
-            wrapper.style.display = 'none';
-        } else {
+        if (visible) {
             wrapper.style.display = 'block';
+        } else {
+            wrapper.style.display = 'none';
         }
     }
 
-    initCodeMirror() : CodeMirror.Editor{
+    initCodeMirror(content: string): CodeMirror.Editor {
         const editor = CodeMirror.fromTextArea(this.container.querySelector("#cm-textarea") as HTMLTextAreaElement, {
             mode: {
                 name: this.type,
@@ -60,6 +82,7 @@ abstract class Cell {
                     cm.replaceSelection(spaces);
                 },
                 'Shift-Enter': function (cm: CodeMirror.Editor) {
+                    window.cellManager.runCell(cm);
                     return;
                 },
             },
@@ -69,6 +92,7 @@ abstract class Cell {
             viewportMargin: Infinity,
             lineNumbers: true,
         });
+        editor.setValue(content);
         return editor;
     }
 }

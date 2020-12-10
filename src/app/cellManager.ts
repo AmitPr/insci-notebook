@@ -4,12 +4,20 @@
 import { Cell } from './cells/cell';
 import { MarkdownCell } from './cells/markdownCell';
 import { PythonCell } from './cells/pythonCell';
+import { PyodideWrapper } from './pyodideWrapper';
 
+
+declare global {
+    interface Window { cellManager: CellManager; }
+}
 
 class CellManager {
     cells: Cell[];
+    pyodideWrapper: PyodideWrapper;
     constructor() {
         this.cells = [];
+        this.pyodideWrapper = new PyodideWrapper();
+        window.cellManager = this;
     }
     assertNever(t: string): never {
         throw new Error("Unkown Cell Type: " + t);
@@ -18,7 +26,7 @@ class CellManager {
     createCell(cell: any): void {
         const cellType: string = cell["type"];
         const cellContent: string = cell["content"].join("\n");
-        const cellContainer: HTMLElement = document.createElement('div');
+        const cellContainer: HTMLElement = document.createElement("div");
         document.body.appendChild(cellContainer);
         let c: Cell;
         switch (cellType) {
@@ -33,6 +41,22 @@ class CellManager {
                 break;
         }
         this.cells.push(c);
+    }
+    newCell(): void {
+        const cellContainer: HTMLElement = document.createElement("div");
+        document.body.appendChild(cellContainer);
+        let c: Cell;
+        c = new PythonCell(cellContainer, "python", "");
+        this.cells.push(c);
+    }
+
+    runCell(cm: CodeMirror.Editor): void {
+        this.cells.forEach(cell => {
+            if (cell.editor == cm) {
+                cell.runCell();
+                return;
+            }
+        });
     }
 }
 
