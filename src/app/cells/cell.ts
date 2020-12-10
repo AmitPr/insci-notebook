@@ -12,11 +12,11 @@ import '../codemirror-modes/python.js';
 
 import '../style/one-theme.css';
 
-class Cell {
+abstract class Cell {
     container: HTMLElement;
     type: string;
     content: string;
-    editor: any;
+    editor: CodeMirror.Editor;
     outputWrapper: HTMLElement;
     constructor(container: HTMLElement, type: string, content: string) {
         CodeMirror.fromTextArea
@@ -34,10 +34,10 @@ class Cell {
         this.renderOutput();
     }
 
-    renderOutput() { }
+    abstract renderOutput(): void;
 
-    toggleEditorDisplay(forceHide: boolean = false) {
-        var wrapper = this.editor.getWrapperElement();
+    toggleEditorDisplay(forceHide = false) : void{
+        const wrapper = this.editor.getWrapperElement();
         if (wrapper.style.display == 'block' || forceHide) {
             wrapper.style.display = 'none';
         } else {
@@ -45,8 +45,8 @@ class Cell {
         }
     }
 
-    initCodeMirror() {
-        var editor = CodeMirror.fromTextArea(this.container.querySelector("#cm-textarea") as HTMLTextAreaElement, {
+    initCodeMirror() : CodeMirror.Editor{
+        const editor = CodeMirror.fromTextArea(this.container.querySelector("#cm-textarea") as HTMLTextAreaElement, {
             mode: {
                 name: this.type,
                 version: 3,
@@ -54,12 +54,13 @@ class Cell {
                 fencedCodeBlockDefaultMode: 'python'
             },
             extraKeys: {
-                'Tab': function (cm: any) {
-                    var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+                'Tab': function (cm: CodeMirror.Editor) {
+                    const indentUnit = cm.getOption("indentUnit") as number;
+                    const spaces = Array(indentUnit + 1).join(" ");
                     cm.replaceSelection(spaces);
                 },
-                'Shift-Enter': function (cm: any) {
-                    cm.cell.renderOutput();
+                'Shift-Enter': function (cm: CodeMirror.Editor) {
+                    return;
                 },
             },
             indentUnit: 4,

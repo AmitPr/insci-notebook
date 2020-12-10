@@ -1,7 +1,7 @@
 import { CellManager } from './app/cellManager';
 import './style/main.css';
 
-var cellManager = new CellManager();
+const cellManager = new CellManager();
 /*
 function renderLaTeX() {
     window.renderMathInElement(document.body,
@@ -16,7 +16,7 @@ function renderLaTeX() {
         });
 }*/
 document.addEventListener("DOMContentLoaded", function () {
-    var notebook = {
+    const notebook = {
         "cells": [
             {
                 "type": "markdown",
@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         ]
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     notebook["cells"].forEach((cell: any) => {
         cellManager.createCell(cell);
     });

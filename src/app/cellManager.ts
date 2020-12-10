@@ -11,12 +11,16 @@ class CellManager {
     constructor() {
         this.cells = [];
     }
-    createCell(cell: any) {
-        var cellType: string = cell["type"];
-        var cellContent: string = cell["content"].join("\n");
-        var cellContainer: HTMLElement = document.createElement('div');
+    assertNever(t: string): never {
+        throw new Error("Unkown Cell Type: " + t);
+    }
+    //eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+    createCell(cell: any): void {
+        const cellType: string = cell["type"];
+        const cellContent: string = cell["content"].join("\n");
+        const cellContainer: HTMLElement = document.createElement('div');
         document.body.appendChild(cellContainer);
-        var c: Cell;
+        let c: Cell;
         switch (cellType) {
             case "markdown":
                 c = new MarkdownCell(cellContainer, cellType, cellContent);
@@ -25,7 +29,7 @@ class CellManager {
                 c = new PythonCell(cellContainer, cellType, cellContent);
                 break;
             default:
-                c = new Cell(cellContainer, cellType, cellContent);
+                this.assertNever(cellType);
                 break;
         }
         this.cells.push(c);

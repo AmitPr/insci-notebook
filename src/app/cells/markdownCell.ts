@@ -6,7 +6,7 @@ class MarkdownCell extends Cell {
     constructor(container: HTMLElement, type: string, content: string) {
         super(container, type, content);
     }
-    renderOutput() {
+    renderOutput() : void {
         this.outputWrapper.innerHTML = marked(this.editor.getValue());
         this.toggleEditorDisplay(true);
     }

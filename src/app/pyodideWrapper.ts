@@ -2,7 +2,8 @@ import './pyodide/pyodide.js';
 import CodeMirror from 'codemirror';
 
 declare global {
-    interface Window { languagePluginUrl: any; logger: any; pyodide: any; }
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    interface Window { languagePluginUrl: string; logger: any; pyodide: any; }
 }
 class PyodideWrapper {
 
@@ -27,8 +28,8 @@ class PyodideWrapper {
 
         });
     }
-    runPython(cm: CodeMirror.Editor) {
-        var currentCell: HTMLElement = cm.getWrapperElement().closest(".Cell") as HTMLElement;
+    runPython(cm: CodeMirror.Editor): void {
+        const currentCell: HTMLElement = cm.getWrapperElement().closest(".Cell") as HTMLElement;
         this.resetOutput(currentCell);
         try {
             this.renderOutput(window.pyodide.runPython(cm.getValue()), currentCell);
@@ -36,23 +37,23 @@ class PyodideWrapper {
             this.renderOutput(err, currentCell);
         }
     }
-    renderOutput(output: string, currentCell: HTMLElement) {
-        var formatted = this.formatOutput(output);
-        var outputArea: HTMLElement = currentCell.querySelector('.jp-OutputArea-output pre') as HTMLElement;
+    renderOutput(output: string, currentCell: HTMLElement): void {
+        const formatted = this.formatOutput(output);
+        const outputArea: HTMLElement = currentCell.querySelector('.jp-OutputArea-output pre') as HTMLElement;
         outputArea.innerHTML += formatted;
     }
-    resetOutput(currentCell: HTMLElement) {
-        var out: HTMLElement | null= currentCell.querySelector('.jp-OutputArea-output pre');
+    resetOutput(currentCell: HTMLElement): void {
+        const out: HTMLElement | null = currentCell.querySelector('.jp-OutputArea-output pre');
         if (out) {
             out.innerHTML = "";
         } else {
-            var container = document.createElement("div");
+            const container = document.createElement("div");
             container.classList.add("Cell-output");
             currentCell.appendChild(container);
             currentCell.innerHTML += '<div class="Cell-output"><div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain"><pre></pre></div></div>';
         }
     }
-    formatOutput(output: string) {
+    formatOutput(output: string): string {
         if (typeof output == "undefined") {
             return "";
         }
