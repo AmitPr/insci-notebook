@@ -1,11 +1,8 @@
 import { CellManager } from './app/cellManager';
+import './style/main.css';
+
 var cellManager = new CellManager();
 /*
-window.toggleMarkdownCell = function (e) {
-    e.parentNode.querySelector('.Cell-MarkdownSource').style.display = '';
-    e.parentNode.querySelector('.CodeMirror').CodeMirror.refresh();
-    e.style.display = 'none';
-}
 function renderLaTeX() {
     window.renderMathInElement(document.body,
         {
@@ -37,8 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         ]
     }
-    notebook["cells"].forEach((cell) => {
+    notebook["cells"].forEach((cell: any) => {
         cellManager.createCell(cell);
     });
-
 });

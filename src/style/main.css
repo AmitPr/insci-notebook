@@ -186,3 +186,12 @@ button {
 .Code-cell-run i {
     font-size: 3em;
 }
+.navbar-container{
+    display: flex;
+}
+.navbar-container > li{
+    list-style-type: none;
+    flex:1;
+    text-align: center;
+    line-height: 40px;
+}

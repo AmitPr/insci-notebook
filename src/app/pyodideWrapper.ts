@@ -1,15 +1,20 @@
 import './pyodide/pyodide.js';
+import CodeMirror from 'codemirror';
 
+declare global {
+    interface Window { languagePluginUrl: any; logger: any; pyodide: any; }
+}
 class PyodideWrapper {
+
     constructor() {
         window.languagePluginUrl = 'https://pyodide-cdn2.iodide.io/v0.15.0/full/'
         //Will Capture print() statements from python
         window.logger = new Object();
-        window.logger.print = function (message) {
-            cellManager.pyodide.renderOutput(message);
+        window.logger.print = function (message: string) {
+            window.pyodide.renderOutput(message);
         }
         languagePluginLoader.then(() => {
-            pyodide.runPython(
+            window.pyodide.runPython(
                 'from js import logger\n' +
                 'class stdWrapper():\n' +
                 '    def __init__(self, stream):\n' +
@@ -22,31 +27,32 @@ class PyodideWrapper {
 
         });
     }
-    runPython(cm) {
-        this.currentCell = cm.getTextArea().closest(".Cell");
-        this.resetOutput();
+    runPython(cm: CodeMirror.Editor) {
+        var currentCell: HTMLElement = cm.getWrapperElement().closest(".Cell") as HTMLElement;
+        this.resetOutput(currentCell);
         try {
-            this.renderOutput(pyodide.runPython(cm.getValue()));
+            this.renderOutput(window.pyodide.runPython(cm.getValue()), currentCell);
         } catch (err) {
-            this.renderOutput(err);
+            this.renderOutput(err, currentCell);
         }
     }
-    renderOutput(output) {
+    renderOutput(output: string, currentCell: HTMLElement) {
         var formatted = this.formatOutput(output);
-        this.currentCell.querySelector('.jp-OutputArea-output pre').innerHTML += formatted;
+        var outputArea: HTMLElement = currentCell.querySelector('.jp-OutputArea-output pre') as HTMLElement;
+        outputArea.innerHTML += formatted;
     }
-    resetOutput() {
-        var out = this.currentCell.querySelector('.jp-OutputArea-output pre');
+    resetOutput(currentCell: HTMLElement) {
+        var out: HTMLElement | null= currentCell.querySelector('.jp-OutputArea-output pre');
         if (out) {
             out.innerHTML = "";
         } else {
             var container = document.createElement("div");
             container.classList.add("Cell-output");
-            this.currentCell.appendChild(container);
-            this.currentCell.innerHTML += '<div class="Cell-output"><div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain"><pre></pre></div></div>';
+            currentCell.appendChild(container);
+            currentCell.innerHTML += '<div class="Cell-output"><div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain"><pre></pre></div></div>';
         }
     }
-    formatOutput(output) {
+    formatOutput(output: string) {
         if (typeof output == "undefined") {
             return "";
         }

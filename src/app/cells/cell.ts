@@ -1,19 +1,25 @@
 import { render, html } from 'uhtml';
 import CodeMirror from 'codemirror';
+
 import 'codemirror/lib/codemirror.css';
 
 import 'codemirror/addon/scroll/simplescrollbars.js';
 import 'codemirror/addon/scroll/simplescrollbars.css';
 
-import './codemirror-modes/markdown.js';
-import './codemirror-modes/python.js';
+import '../codemirror-modes/markdown.js';
+import '../codemirror-modes/python.js';
 
-import marked from 'marked';
 
 import '../style/one-theme.css';
 
 class Cell {
-    constructor(container, type, content) {
+    container: HTMLElement;
+    type: string;
+    content: string;
+    editor: any;
+    outputWrapper: HTMLElement;
+    constructor(container: HTMLElement, type: string, content: string) {
+        CodeMirror.fromTextArea
         this.container = container;
         this.type = type;
         this.content = content;
@@ -23,35 +29,24 @@ class Cell {
             <div class = "cell-output"></div>
         </div>`);
         this.editor = this.initCodeMirror();
-        this.editor.getWrapperElement().style.display='block';
-        this.outputWrapper = this.container.querySelector(".cell-output");
+        this.editor.getWrapperElement().style.display = 'block';
+        this.outputWrapper = this.container.querySelector(".cell-output") as HTMLElement;
         this.renderOutput();
     }
 
-    renderOutput(){
-        switch(this.type){
-            case 'markdown':
-                this.outputWrapper.innerHTML=marked(this.editor.getValue());
-                this.toggleEditorDisplay(true);
-                break;
-            case 'python':
-                break;
-            default:
-                break;
-        }
-    }
+    renderOutput() { }
 
-    toggleEditorDisplay(forceHide=false){
+    toggleEditorDisplay(forceHide: boolean = false) {
         var wrapper = this.editor.getWrapperElement();
-        if(wrapper.style.display=='block' || forceHide){
-            wrapper.style.display='none';
-        }else{
-            wrapper.style.display='block';
+        if (wrapper.style.display == 'block' || forceHide) {
+            wrapper.style.display = 'none';
+        } else {
+            wrapper.style.display = 'block';
         }
     }
 
     initCodeMirror() {
-        var editor = CodeMirror.fromTextArea(this.container.querySelector("#cm-textarea"), {
+        var editor = CodeMirror.fromTextArea(this.container.querySelector("#cm-textarea") as HTMLTextAreaElement, {
             mode: {
                 name: this.type,
                 version: 3,
@@ -59,22 +54,20 @@ class Cell {
                 fencedCodeBlockDefaultMode: 'python'
             },
             extraKeys: {
-                'Tab': function (cm) {
+                'Tab': function (cm: any) {
                     var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
                     cm.replaceSelection(spaces);
                 },
-                'Shift-Enter': function (cm) {
+                'Shift-Enter': function (cm: any) {
                     cm.cell.renderOutput();
                 },
             },
             indentUnit: 4,
-            matchBrackets: true,
             theme: 'one-theme',
             scrollbarStyle: 'overlay',
             viewportMargin: Infinity,
             lineNumbers: true,
         });
-        editor.cell=this;
         return editor;
     }
 }
