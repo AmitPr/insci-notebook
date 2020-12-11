@@ -15,10 +15,10 @@ class MarkdownCell extends Cell {
     setEditMode(active: boolean): void{
         if(active){
             this.outputWrapper.style.display='none';
-            this.setEditorDisplay(true);
+            this.setInputDisplay(true);
         }else{
             this.outputWrapper.style.display='block';
-            this.setEditorDisplay(false);
+            this.setInputDisplay(false);
         }
     }
 }

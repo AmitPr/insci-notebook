@@ -25,7 +25,7 @@ abstract class Cell {
     }
 
     get content(): string {
-        if(this.editor===undefined){
+        if (this.editor === undefined) {
             return this._content;
         }
         return this.editor.getValue();
@@ -36,34 +36,41 @@ abstract class Cell {
 
     editor: CodeMirror.Editor;
     outputWrapper: HTMLElement;
+    inputWrapper: HTMLElement;
 
     constructor(container: HTMLElement, type: string, content: string) {
         CodeMirror.fromTextArea
         this.container = container;
+        this.container.classList.add("cell");
+        this.container.onclick = () => {
+            window.cellManager.setActiveCell(this);
+        };
         this._type = type;
-        this._content=content;
+        this.container.dataset.language = this.type;
+        this._content = content;
         this.renderCell();
         this.editor = this.initCodeMirror(content);
-        this.setEditorDisplay(true);
         this.outputWrapper = this.container.querySelector(".cell-output") as HTMLElement;
+        this.inputWrapper = this.container.querySelector(".cell-input") as HTMLElement;
+        this.setInputDisplay(true);
     }
 
     abstract runCell(): void;
 
     renderCell(): void {
         render(this.container, html`
-        <div>
+        <div class = "cell-input">
             <textarea id="cm-textarea">${this.content}</textarea>
-            <div class = "cell-output"></div>
-        </div>`);
+        </div>
+        <div class = "cell-output"></div>
+        `);
     }
 
-    setEditorDisplay(visible = false): void {
-        const wrapper = this.editor.getWrapperElement();
+    setInputDisplay(visible = false): void {
         if (visible) {
-            wrapper.style.display = 'block';
+            this.inputWrapper.style.display = 'block';
         } else {
-            wrapper.style.display = 'none';
+            this.inputWrapper.style.display = 'none';
         }
     }
 

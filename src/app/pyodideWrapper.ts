@@ -8,6 +8,7 @@ declare global {
 class PyodideWrapper {
 
     currentCell: PythonCell | null;
+    runCount: number;
 
     constructor() {
         window.languagePluginUrl = 'https://pyodide-cdn2.iodide.io/v0.15.0/full/'
@@ -30,9 +31,12 @@ class PyodideWrapper {
 
         });
         this.currentCell = null;
+        this.runCount=0;
     }
     runPython(cell: PythonCell): void {
+        this.runCount++;
         this.currentCell = cell;
+        this.currentCell.setStatus("input",this.runCount);
         this.currentCell.resetOutput();
         try {
             this.renderOutput(window.pyodide.runPython(this.currentCell.content));
@@ -43,6 +47,7 @@ class PyodideWrapper {
     renderOutput(output: string): void {
         const formatted: string = this.formatOutput(output);
         this.currentCell?.appendToOutput(formatted);
+        this.currentCell?.setStatus("output",this.runCount);
     }
     formatOutput(output: string): string {
         if (typeof output == "undefined") {

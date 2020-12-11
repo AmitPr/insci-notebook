@@ -13,9 +13,11 @@ declare global {
 
 class CellManager {
     cells: Cell[];
+    activeCell: Cell | null;
     pyodideWrapper: PyodideWrapper;
     constructor() {
         this.cells = [];
+        this.activeCell=null;
         this.pyodideWrapper = new PyodideWrapper();
         window.cellManager = this;
     }
@@ -56,6 +58,14 @@ class CellManager {
                 return;
             }
         });
+    }
+
+    setActiveCell(cell: Cell): void {
+        if(this.activeCell!=null){
+            this.activeCell.container.classList.remove('cell-selected');
+        }
+        this.activeCell=cell;
+        this.activeCell.container.classList.add('cell-selected');
     }
 }
 

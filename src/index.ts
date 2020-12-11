@@ -22,6 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 "type": "markdown",
                 "content": [
                     "# Test  ",
+                    "## Test  ",
+                    "### Test  ",
+                    "#### Test  ",
                     "*test* and **test** and ***test***!"
                 ]
             },
