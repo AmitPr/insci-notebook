@@ -1,5 +1,5 @@
 import { CellManager } from './app/cellManager';
-import './style/main.css';
+import './style/main.scss';
 
 const cellManager = new CellManager();
 /*

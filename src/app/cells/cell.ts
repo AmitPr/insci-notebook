@@ -10,7 +10,7 @@ import '../codemirror-modes/markdown.js';
 import '../codemirror-modes/python.js';
 
 
-import '../../style/one-theme.css';
+import '../../style/one-theme.scss';
 
 abstract class Cell {
     container: HTMLElement;
