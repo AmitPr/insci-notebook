@@ -1,4 +1,5 @@
-@media (prefers-color-scheme: light) {
+:root,
+:root[data-theme="light"] {
 	.cm-s-one-theme.CodeMirror {
 		background: #fafafa;
 		color: #383a42;
@@ -100,7 +101,7 @@
 	}
 }
 
-@media (prefers-color-scheme: dark) {
+:root[data-theme="dark"] {
 	.cm-s-one-theme.CodeMirror {
 		background: #282c34;
 		color: #abb2bf;

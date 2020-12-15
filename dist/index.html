@@ -27,13 +27,26 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <ul class="navbar-container">
-            <li><a onclick="window.cellManager.newCell()">New Cell</a></li>
-            <li><a>Edit Cell</a></li>
-            <li><a>Run Cell</a></li>
-        </ul>
-    </nav>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <h1>INSCI</h1>
+            </div>
+            <div class="title">
+                <h1>Notebook Title</h1>
+            </div>
+        </div>
+        <nav class="actionbar">
+            <ul class="actionbar-container">
+                <li><a onclick="window.cellManager.newCell(null,'python')">New Cell</a></li>
+                <li><a>Edit Cell</a></li>
+                <li><a>Run Cell</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="grid">
+        
+    </div>
 </body>
 
 </html>

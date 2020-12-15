@@ -1,189 +1,169 @@
-@media (prefers-color-scheme: light) {
-	body {
-		color: #212121;
-		background: #ffffff;
-	}
+@import "variables";
 
-	code {
-		background: #ededed;
-	}
-
-	.jp-MarkdownOutput {
-		pre {
-			code {
-				background-color: #ffffff;
-			}
-		}
-	}
-
-	.Cell-output {
-		background: #ededed;
-	}
-
-	.Input-editor {
-		border: 1px solid #e0e0e0;
-		background: #f5f5f5;
-		border-radius: 4px;
-	}
-
-	table {
-		color: rgba(0, 0, 0, 0.87);
-	}
-
-	tbody {
-		tr {
-			&:nth-child(2n) {
-				background: #f5f5f5;
-			}
-
-			&:nth-child(2n+1) {
-				background: #fff;
-			}
-		}
-	}
-
-	h1 {
-		color: #212121;
-		font-weight: 400;
-	}
-
-	h2 {
-		color: #212121;
-		font-weight: 400;
-	}
-
-	h3 {
-		color: #212121;
-		font-weight: 400;
-	}
-
-	h4 {
-		color: #212121;
-		font-weight: 400;
-	}
-
-	h5 {
-		color: #212121;
-		font-weight: 400;
-	}
-
-	h6 {
-		color: #212121;
-		font-weight: 400;
-	}
-
-	.cell-selected {
-		background-color: #f5f5f5;
+@mixin sm {
+	@media (max-width: 599px) {
+		@content;
 	}
 }
 
-@media (prefers-color-scheme: dark) {
+@mixin md {
+	@media (min-width: 600px) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media (min-width: 960px) {
+		@content;
+	}
+}
+
+:root,
+:root[data-theme="light"] {
 	body {
-		color: #abb2bf;
-		background: #212121;
+		color: theme("text", 1);
+		background-color: theme("color-bg", 1);
 	}
 
 	code {
-		background: #424242;
+		background-color: theme("color-code", 1);
 	}
 
 	.jp-MarkdownOutput {
 		pre {
 			code {
-				background-color: #212121;
+				background-color: theme("color-bg", 1);
 			}
 		}
 	}
 
 	.Cell-output {
-		background: #3a3f4b;
+		background-color: theme("color-output", 1);
 	}
 
 	.Input-editor {
-		border: 1px solid #202437;
-		background: #171a28;
+		border: 1px solid theme("border", 1);
+		background-color: theme("color-input", 1);
 		border-radius: 4px;
 	}
 
 	table {
-		color: rgba(171, 178, 191, 0.87);
+		color: theme("table", 1);
 	}
 
 	tbody {
 		tr {
 			&:nth-child(2n) {
-				background: #424242;
+				background-color: theme("color-contrast", 1);
 			}
 
 			&:nth-child(2n+1) {
-				background: #212121;
+				background-color: theme("color-bg", 1);
 			}
 		}
 	}
 
-	h1 {
-		color: #abb2bf;
-		font-weight: 400;
-	}
-
-	h2 {
-		color: #abb2bf;
-		font-weight: 400;
-	}
-
-	h3 {
-		color: #abb2bf;
-		font-weight: 400;
-	}
-
-	h4 {
-		color: #abb2bf;
-		font-weight: 400;
-	}
-
-	h5 {
-		color: #abb2bf;
-		font-weight: 400;
-	}
-
-	h6 {
-		color: #abb2bf;
-		font-weight: 400;
+	@for $i from 1 through 6 {
+		h#{$i} {
+			color: theme("text", 1);
+		}
 	}
 
 	.cell-selected {
-		background-color: #424242;
+		background-color: theme("color-contrast", 1);
+	}
+}
+
+:root[data-theme="dark"] {
+	body {
+		color: theme("text", 2);
+		background-color: theme("color-bg", 2);
+	}
+
+	code {
+		background-color: theme("color-code", 2);
+	}
+
+	.jp-MarkdownOutput {
+		pre {
+			code {
+				background-color: theme("color-bg", 2);
+			}
+		}
+	}
+
+	.Cell-output {
+		background-color: theme("color-output", 2);
+	}
+
+	.Input-editor {
+		border: 1px solid theme("border", 2);
+		background-color: theme("color-input", 2);
+		border-radius: 4px;
+	}
+
+	table {
+		color: theme("table", 2);
+	}
+
+	tbody {
+		tr {
+			&:nth-child(2n) {
+				background-color: theme("color-contrast", 2);
+			}
+
+			&:nth-child(2n+1) {
+				background-color: theme("color-bg", 2);
+			}
+		}
+	}
+
+	@for $i from 1 through 6 {
+		h#{$i} {
+			color: theme("text", 2);
+		}
+	}
+
+	.cell-selected {
+		background-color: theme("color-contrast", 2);
 	}
 }
 
 body {
 	font-family: 'Fira Sans', sans-serif;
 	font-size: 1em;
-	font-weight: 400;
+
+	margin: 0;
 }
 
 h1 {
 	font-size: 2em;
+	font-weight: 400;
 }
 
 h2 {
 	font-size: 1.8em;
+	font-weight: 400;
 }
 
 h3 {
 	font-size: 1.5em;
+	font-weight: 400;
 }
 
 h4 {
 	font-size: 1.3em;
+	font-weight: 400;
 }
 
 h5 {
 	font-size: 1.2em;
+	font-weight: 400;
 }
 
 h6 {
 	font-size: 1.1em;
+	font-weight: 400;
 }
 
 code {
@@ -255,17 +235,59 @@ button {
 	outline: none;
 }
 
-.navbar-container {
-	display: flex;
+header {
 
-	>li {
-		list-style-type: none;
-		flex: 1;
-		text-align: center;
-		line-height: 40px;
+	display: flex;
+	flex-flow: row wrap;
+
+	h1 {
+		display: inline;
+		margin: 0;
+		//color: #fff;
+	}
+
+	.header {
+		padding: 10px 0;
+		display: flex;
+		width: 100%;
+		justify-content: flex-start;
+
+		.logo {
+			margin: 0 10px;
+		}
+
+		.title {
+			margin: 0 10px;
+		}
+
+		div {
+			display: flex;
+			flex: 0 1 auto;
+		}
+	}
+
+	.actionbar {
+		display: flex;
+		width: 100%;
+
+		.actionbar-container {
+			display: flex;
+			justify-content: space-between;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+
+			>li {
+				list-style-type: none;
+				flex: 1;
+				text-align: center;
+				line-height: 40px;
+			}
+		}
 	}
 }
 
+/*
 .cell {
 	margin: 20px 0;
 	font-family: 'Fira Mono', monospace;
@@ -276,10 +298,8 @@ button {
 }
 
 .cell[data-language='markdown'] {
-	.cell-input {
-		width: 85%;
-	}
 
+	.cell-input,
 	.cell-output {
 		width: 85%;
 	}
@@ -290,29 +310,98 @@ button {
 	justify-content: space-between;
 	flex-wrap: wrap;
 
-	.py-input-status {
-		width: 5%;
-		display: flex;
-		display: 0 0 5%;
-	}
-
+	.py-input-status,
 	.py-output-status {
 		width: 5%;
 		display: flex;
 		display: 0 0 5%;
 	}
 
-	.cell-input {
-		width: 90%;
-		margin-right: 5%;
-		display: flex;
-		display: 0 0 95%;
-	}
-
+	.cell-input,
 	.cell-output {
 		width: 90%;
 		margin-right: 5%;
 		display: flex;
 		display: 0 0 95%;
+	}
+}*/
+
+.grid {
+	display: grid;
+	grid-auto-rows: auto;
+
+	@include sm {
+		grid-template-columns: repeat(4, 1fr);
+		margin: 0 32px;
+		$gap: minmax(16px, auto);
+		column-gap: $gap;
+
+		.start-sm-1 {
+			margin-left: $gap;
+		}
+
+		@for $i from 1 through 4 {
+			.start-sm-#{$i} {
+				grid-column-start: $i;
+			}
+
+			.end-sm-#{$i} {
+				grid-column-end: $i;
+			}
+		}
+
+		.end-sm-5 {
+			grid-column-end: 5;
+		}
+	}
+
+	@include md {
+		grid-template-columns: repeat(8, 1fr);
+		margin: 0 48px;
+		$gap: minmax(16px, 24px);
+		column-gap: $gap;
+
+		.start-md-1 {
+			margin-left: $gap;
+		}
+
+		@for $i from 1 through 8 {
+			.start-md-#{$i} {
+				grid-column-start: $i;
+			}
+
+			.end-md-#{$i} {
+				grid-column-end: $i;
+			}
+		}
+
+		.end-md-9 {
+			grid-column-end: 9;
+		}
+	}
+
+	@include lg {
+		grid-template-columns: repeat(12, 1fr);
+		margin: 0 48px;
+		$gap: minmax(24px, auto);
+		column-gap: $gap;
+
+		.start-lg-1 {
+			margin-left: $gap;
+		}
+
+		@for $i from 1 through 12 {
+			.start-lg-#{$i} {
+				grid-column-start: $i;
+			}
+
+			.end-lg-#{$i} {
+				grid-column-end: $i;
+			}
+		}
+
+		.end-lg-13 {
+			grid-column-end: 13;
+		}
 	}
 }

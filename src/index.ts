@@ -1,7 +1,7 @@
 import { CellManager } from './app/cellManager';
+import { setTheme, toggleTheme } from './style/styler';
 import './style/main.scss';
 
-const cellManager = new CellManager();
 /*
 function renderLaTeX() {
     window.renderMathInElement(document.body,
@@ -16,6 +16,7 @@ function renderLaTeX() {
         });
 }*/
 document.addEventListener("DOMContentLoaded", function () {
+    const cellManager = new CellManager();
     const notebook = {
         "cells": [
             {
@@ -41,4 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     notebook["cells"].forEach((cell: any) => {
         cellManager.createCell(cell);
     });
+});
+document.addEventListener("click", () => {
+    toggleTheme();
 });
