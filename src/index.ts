@@ -1,5 +1,11 @@
 import { CellManager } from './app/cellManager';
-import { setTheme, toggleTheme } from './style/styler';
+import { toggleTheme, currentTheme } from './style/styler';
+import { Button } from './app/component/button';
+
+import dayNightToggle from './static/day-night-toggle.svg';
+import plusCircle from './static/plus-circle.svg';
+import trash from './static/trash.svg';
+
 import './style/main.scss';
 
 /*
@@ -38,11 +44,39 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         ]
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     notebook["cells"].forEach((cell: any) => {
         cellManager.createCell(cell);
     });
+
+    const themeToggleContainer: HTMLElement = document.querySelector(".theme-toggle") as HTMLElement;
+    const themeToggleButton: Button = new Button(themeToggleContainer, dayNightToggle, () => {
+        toggleTheme();
+        document.documentElement.setAttribute("data-state", "transition");
+        if (currentTheme == "dark") {
+            const elements: any[] = Array.from(themeToggleContainer.getElementsByClassName('day-night-animate'));
+            elements.forEach(e => {
+                e.beginElement();
+            });
+        } else if (currentTheme == "light") {
+            const elements: any[] = Array.from(themeToggleContainer.getElementsByClassName('night-day-animate'));
+            elements.forEach(e => {
+                e.beginElement();
+            });
+        }
+        window.setTimeout(() => {
+            document.documentElement.setAttribute("data-state", "");
+        }, 250)
+    });
+    const newButtonContainer: HTMLElement = document.querySelector(".button-new-cell") as HTMLElement;
+    const newCellButton: Button = new Button(newButtonContainer,plusCircle,()=>{
+        cellManager.newCell(null,"python");
+    });
+    const deleteButtonContainer: HTMLElement = document.querySelector(".button-delete-cell") as HTMLElement;
+    const deleteCellButton: Button = new Button(deleteButtonContainer,trash,()=>{
+        cellManager.deleteCell(cellManager.activeCell);
+    });
 });
+/*
 document.addEventListener("click", () => {
     toggleTheme();
-});
+});*/

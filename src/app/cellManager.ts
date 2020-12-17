@@ -16,7 +16,7 @@ class CellManager {
         this.cells = [];
         this.activeCell = null;
         this.pyodideWrapper = new PyodideWrapper();
-        this.container = document.body.querySelector(".grid") as HTMLElement;
+        this.container = document.body.querySelector(".notebook") as HTMLElement;
         window.cellManager = this;
     }
     assertNever(t: string): never {
@@ -25,12 +25,11 @@ class CellManager {
 
     createCellContainer(): HTMLElement {
         const cellContainer: HTMLElement = document.createElement("div");
-        cellContainer.classList.add("start-sm-1", "end-sm-4", "start-md-2", "end-md-8", "start-lg-2", "end-lg-10");
         this.container.appendChild(cellContainer);
         return cellContainer;
     }
 
-    //eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+    //eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     createCell(cell: any): void {
         const cellType: string = cell["type"];
         const cellContent: string = cell["content"].join("\n");
@@ -45,6 +44,15 @@ class CellManager {
             const cellContainer: HTMLElement = this.createCellContainer();
             const c: Cell = new PythonCell(cellContainer, "python", "");
             this.cells.push(c);
+        }
+    }
+    deleteCell(cell: Cell | null): void {
+        if (cell == null)
+            return;
+        const idx = this.cells.indexOf(cell);
+        if (idx > -1) {
+            this.container.removeChild(cell.container);
+            this.cells.splice(idx, 1);
         }
     }
 

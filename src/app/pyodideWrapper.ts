@@ -2,7 +2,6 @@ import { languagePluginLoader } from './pyodide/pyodide.js';
 import { PythonCell } from './cells/pythonCell.js';
 
 declare global {
-    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     interface Window { languagePluginUrl: string; logger: any; pyodide: any; }
 }
 class PyodideWrapper {

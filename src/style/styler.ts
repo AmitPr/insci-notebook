@@ -20,4 +20,4 @@ function toggleTheme(): void {
         setTheme("light");
     }
 }
-export { setTheme, toggleTheme }
+export { setTheme, toggleTheme, currentTheme }
