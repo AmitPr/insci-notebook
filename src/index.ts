@@ -76,7 +76,3 @@ document.addEventListener("DOMContentLoaded", function () {
         cellManager.deleteCell(cellManager.activeCell);
     });
 });
-/*
-document.addEventListener("click", () => {
-    toggleTheme();
-});*/

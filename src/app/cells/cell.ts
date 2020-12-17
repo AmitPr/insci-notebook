@@ -102,6 +102,17 @@ abstract class Cell {
         editor.setValue(content);
         return editor;
     }
+    toJSON(): CellSerialized {
+        const serializedContent: string[] = this.content.split("\n");
+        return {
+            type: this.type,
+            content: serializedContent
+        }
+    }
 }
 
 export { Cell };
+export interface CellSerialized {
+    type: string,
+    content: string[]
+}

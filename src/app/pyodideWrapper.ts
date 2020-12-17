@@ -34,17 +34,17 @@ class PyodideWrapper {
                     '        #self.stream.write(text)\n' +
                     'sys.stdout = stdWrapper(sys.__stdout__)\n' +
                     'sys.stderr = stdWrapper(sys.__stderr__)\n');
-                    this.runCount++;
-                    this.currentCell = cell;
-                    this.currentCell.setStatus("input", this.runCount);
-                    this.currentCell.resetOutput();
-                    try {
-                        this.renderOutput(window.pyodide.runPython(this.currentCell.content));
-                    } catch (err) {
-                        this.renderOutput(err);
-                    }
+                this.runCount++;
+                this.currentCell = cell;
+                this.currentCell.setStatus("input", this.runCount);
+                this.currentCell.resetOutput();
+                try {
+                    this.renderOutput(window.pyodide.runPython(this.currentCell.content));
+                } catch (err) {
+                    this.renderOutput(err);
+                }
             });
-            this.initialized=true;
+            this.initialized = true;
             return;
         }
         this.runCount++;

@@ -1,10 +1,6 @@
 @import "variables";
 @import "breakpoints";
 
-%shadow-small {
-	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-}
-
 :root[data-state="transition"] * {
 	$animSpeed: 250ms;
 	-webkit-transition: background-color $animSpeed ease-in-out, color $animSpeed ease-in-out;
@@ -334,8 +330,22 @@ header {
 		}
 
 		margin: 0 auto;
-		button{
-			@extend %shadow-small;
+
+		button {
+			background-image: radial-gradient(circle at center, #727272 50%, transparent 50%);
+			background-repeat: no-repeat;
+			transition: background-size .5s, color .5s;
+			background-size: 0 0;
+			background-position: 50% 50%;
+			border-radius: 50%;
+			svg{
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+
+		button:hover {
+			background-size: 200% 200%;
 		}
 	}
 }
