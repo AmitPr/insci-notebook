@@ -1,6 +1,10 @@
 @import "variables";
 @import "breakpoints";
 
+%shadow-small {
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
 :root[data-state="transition"] * {
 	$animSpeed: 250ms;
 	-webkit-transition: background-color $animSpeed ease-in-out, color $animSpeed ease-in-out;
@@ -23,17 +27,6 @@
 		background-color: theme("color-bg", 1);
 	}
 
-	/*.cell-output {
-		background-color: theme("color-output", 1);
-	}*/
-
-	/*.Input-editor {
-		border: 1px solid theme("border", 1);
-		background-color: theme("color-input", 1);
-		border-radius: 4px;
-	}*/
-
-
 	button {
 		padding: 0;
 		margin: 0;
@@ -55,16 +48,15 @@
 		}
 	}
 
-	@for $i from 1 through 6 {
-		h#{$i} {
-			color: theme("text", 1);
-		}
+	:is(h1, h2, h3, h4, h5, h6) {
+		color: theme("text", 1);
 	}
 
 	.cell-selected {
 		background-color: theme("color-contrast", 1);
 	}
-	.text{
+
+	.text {
 		color: theme("text", 1);
 		stroke: theme("text", 1);
 	}
@@ -84,16 +76,6 @@
 		background-color: theme("color-bg", 2);
 	}
 
-	/*.cell-output {
-		background-color: theme("color-output", 2);
-	}*/
-
-	.Input-editor {
-		border: 1px solid theme("border", 2);
-		background-color: theme("color-input", 2);
-		border-radius: 4px;
-	}
-
 	table {
 		color: theme("table", 2);
 	}
@@ -110,16 +92,15 @@
 		}
 	}
 
-	@for $i from 1 through 6 {
-		h#{$i} {
-			color: theme("text", 2);
-		}
+	:is(h1, h2, h3, h4, h5, h6) {
+		color: theme("text", 2);
 	}
 
 	.cell-selected {
 		background-color: theme("color-contrast", 2);
 	}
-	.text{
+
+	.text {
 		color: theme("text", 2);
 		stroke: theme("text", 2);
 	}
@@ -167,10 +148,8 @@ code {
 	padding: 1px 5px;
 }
 
-.jp-MarkdownOutput {
-	pre {
-		margin: 1.5em 2em;
-	}
+.cell[data-language='markdown'] .cell-output pre {
+	margin: 1.5em 2em;
 }
 
 .cell-output {
@@ -263,44 +242,6 @@ header {
 	}
 }
 
-/*
-.cell {
-	margin: 20px 0;
-	font-family: 'Fira Mono', monospace;
-}
-
-.cell-input {
-	margin: 0 auto;
-}
-
-.cell[data-language='markdown'] {
-
-	.cell-input,
-	.cell-output {
-		width: 85%;
-	}
-}
-
-.cell[data-language='python'] {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-
-	.py-input-status,
-	.py-output-status {
-		width: 5%;
-		display: flex;
-		display: 0 0 5%;
-	}
-
-	.cell-input,
-	.cell-output {
-		width: 90%;
-		margin-right: 5%;
-		display: flex;
-		display: 0 0 95%;
-	}
-}*/
 .container {
 	display: flex;
 	flex-flow: row nowrap;
@@ -393,6 +334,9 @@ header {
 		}
 
 		margin: 0 auto;
+		button{
+			@extend %shadow-small;
+		}
 	}
 }
 
