@@ -3,9 +3,9 @@
 
 :root[data-state="transition"] * {
 	$animSpeed: 250ms;
-	-webkit-transition: background-color $animSpeed ease-in-out, color $animSpeed ease-in-out;
-	-ms-transition: background-color $animSpeed ease-in-out, color $animSpeed ease-in-out;
-	transition: background-color $animSpeed ease-in-out, color $animSpeed ease-in-out;
+	-webkit-transition: background-color $animSpeed ease-in-out, color $animSpeed ease-in-out, stroke $animSpeed ease-in-out;
+	-ms-transition: background-color $animSpeed ease-in-out, color $animSpeed ease-in-out, stroke $animSpeed ease-in-out;
+	transition: background-color $animSpeed ease-in-out, color $animSpeed ease-in-out, stroke $animSpeed ease-in-out;
 }
 
 :root,
@@ -313,20 +313,22 @@ header {
 	flex: 1;
 
 	.action-container {
+		float: left;
+
 		@include xs {
-			max-width: 18px;
+			width: 32px;
 		}
 
 		@include sm {
-			max-width: 24px;
-		}
-
-		@include md {
 			max-width: 36px;
 		}
 
+		@include md {
+			max-width: 40px;
+		}
+
 		@include lg {
-			max-width: 48px;
+			max-width: 44px;
 		}
 
 		margin: 0 auto;
@@ -338,7 +340,8 @@ header {
 			background-size: 0 0;
 			background-position: 50% 50%;
 			border-radius: 50%;
-			svg{
+
+			svg {
 				display: inline-block;
 				vertical-align: middle;
 			}
@@ -353,4 +356,12 @@ header {
 .notebook {
 	order: 0;
 	flex: 8;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: stretch;
+}
+
+.cell {
+	flex: 1;
+	margin: 12px 0;
 }

@@ -21,11 +21,11 @@
         <animateTransform class="day-night-animate" attributeName="transform" attributeType="XML" type="translate" from="0 0" to="60 55" fill="freeze" begin="indefinite" dur="0.25s" />
         <animateTransform class="night-day-animate" attributeName="transform" attributeType="XML" type="translate" from="60 55" to="0 0" fill="freeze" begin="indefinite" dur="0.25s" />
     </line>
-    <path d="M 107 203.9 C 88.1 195.9 74.2 179.3 69.6 159.4 l 0 0 C 115.7 169.9 156.9 128.7 146.4 82.6 l 0 0 C 175.4 89.3 196 115.2 196 145 c -19.1 11.2 -38.3 23.4 -45.7 50.4 c 0 0 -22.4 -8 -43.3 8.6 z" id="moon" style="fill:#5C6BC0;stroke:#000000;stroke-width:16;stroke-linecap:round;stroke-linejoin:round">
+    <path class="text" d="M 107 203.9 C 88.1 195.9 74.2 179.3 69.6 159.4 l 0 0 C 115.7 169.9 156.9 128.7 146.4 82.6 l 0 0 C 175.4 89.3 196 115.2 196 145 c -19.1 11.2 -38.3 23.4 -45.7 50.4 c 0 0 -22.4 -8 -43.3 8.6 z" id="moon" fill="#5C6BC0" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16">
         <animateTransform class="day-night-animate" attributeName="transform" attributeType="XML" type="translate" from="0 0" to="-60 -55" fill="freeze" begin="indefinite" dur="0.25s" />
         <animateTransform class="night-day-animate" attributeName="transform" attributeType="XML" type="translate" from="-60 -55" to="0 0" fill="freeze" begin="indefinite" dur="0.25s" />
     </path>
-    <path fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M88 148a68 68 0 1168 68H76a44 44 0 1114-86">
+    <path class="text" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M88 148a68 68 0 1168 68H76a44 44 0 1114-86">
         <animate class="day-night-animate" attributeName="fill" attributeType="XML" from="#fff" to="#424242" begin="indefinite" dur="0.25s" fill="freeze" />
         <animate class="night-day-animate" attributeName="fill" attributeType="XML" from="#424242" to="#fff" begin="indefinite" dur="0.25s" fill="freeze" />
     </path>

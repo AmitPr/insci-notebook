@@ -47,10 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
     notebook["cells"].forEach((cell: any) => {
         cellManager.createCell(cell);
     });
-
     const themeToggleContainer: HTMLElement = document.querySelector(".theme-toggle") as HTMLElement;
-    const themeToggleButton: Button = new Button(themeToggleContainer, dayNightToggle, () => {
-        toggleTheme();
+    const animate = function () {
         document.documentElement.setAttribute("data-state", "transition");
         if (currentTheme == "dark") {
             const elements: any[] = Array.from(themeToggleContainer.getElementsByClassName('day-night-animate'));
@@ -63,16 +61,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 e.beginElement();
             });
         }
+    }
+    const themeToggleButton: Button = new Button(themeToggleContainer, dayNightToggle, () => {
+        toggleTheme();
+        animate();
         window.setTimeout(() => {
             document.documentElement.setAttribute("data-state", "");
         }, 250)
     });
+    animate();
     const newButtonContainer: HTMLElement = document.querySelector(".button-new-cell") as HTMLElement;
-    const newCellButton: Button = new Button(newButtonContainer,plusCircle,()=>{
-        cellManager.newCell(null,"python");
+    const newCellButton: Button = new Button(newButtonContainer, plusCircle, () => {
+        cellManager.newCell(null, "python");
     });
     const deleteButtonContainer: HTMLElement = document.querySelector(".button-delete-cell") as HTMLElement;
-    const deleteCellButton: Button = new Button(deleteButtonContainer,trash,()=>{
+    const deleteCellButton: Button = new Button(deleteButtonContainer, trash, () => {
         cellManager.deleteCell(cellManager.activeCell);
     });
 });

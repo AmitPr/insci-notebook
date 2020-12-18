@@ -89,7 +89,7 @@ class CellManager {
         this.activeCell.container.classList.add('cell-selected');
     }
 
-    toJSON():CellManagerSerialized{
+    toJSON(): CellManagerSerialized {
         return {
             cells: this.cells
         }
