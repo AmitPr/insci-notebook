@@ -1,5 +1,4 @@
-:root,
-:root[data-theme="light"] {
+.light {
 	.cm-s-one-theme.CodeMirror {
 		background: #fafafa;
 		color: #383a42;
@@ -101,7 +100,7 @@
 	}
 }
 
-:root[data-theme="dark"] {
+.dark {
 	.cm-s-one-theme.CodeMirror {
 		background: #282c34;
 		color: #abb2bf;

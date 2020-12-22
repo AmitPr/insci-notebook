@@ -6,11 +6,13 @@ if (cookie) {
 } else {
     currentTheme = "light";
 }
-document.documentElement.setAttribute("data-theme", currentTheme);
+document.documentElement.classList.remove("dark","light");
+document.documentElement.classList.add(currentTheme);
 
 function setTheme(theme: string): void {
     document.cookie = "theme=" + theme + "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.classList.remove("dark","light");
+    document.documentElement.classList.add(theme);
     currentTheme = theme;
 }
 function toggleTheme(): void {

@@ -8,9 +8,12 @@
   "dependencies": {
     "@types/codemirror": "^0.0.102",
     "@types/marked": "^1.2.1",
+    "autoprefixer": "^10.1.0",
     "codemirror": "^5.58.3",
     "katex": "^0.12.0",
     "marked": "^1.2.5",
+    "postcss-loader": "^4.1.0",
+    "tailwindcss": "^2.0.2",
     "uhtml": "^2.1.4"
   },
   "devDependencies": {
@@ -18,9 +21,9 @@
     "@typescript-eslint/parser": "^4.9.1",
     "css-loader": "^5.0.1",
     "eslint": "^7.14.0",
+    "postcss": "^8.2.1",
+    "postcss-nested": "^5.0.3",
     "raw-loader": "^4.0.2",
-    "sass": "^1.30.0",
-    "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.0.11",
     "typescript": "^4.1.2",
@@ -30,5 +33,8 @@
   "scripts": {
     "lint": "eslint . --ext .ts --fix",
     "pack": "webpack -c webpack.config.js"
+  },
+  "engines": {
+    "yarn": "YARN NO LONGER USED - use npm instead."
   }
 }

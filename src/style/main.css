@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'variables.css';
+
+:root[data-state="transition"] * {
+	transition: all 250ms ease-in-out;
+}
+:root{
+	transition: border 250ms ease-in-out;
+}
+
+body {
+	font-family: 'Fira Sans', sans-serif;
+	font-size: 1em;
+
+	margin: 0;
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: 400;
+}
+
+h2 {
+	font-size: 1.8em;
+	font-weight: 400;
+}
+
+h3 {
+	font-size: 1.5em;
+	font-weight: 400;
+}
+
+h4 {
+	font-size: 1.3em;
+	font-weight: 400;
+}
+
+h5 {
+	font-size: 1.2em;
+	font-weight: 400;
+}
+
+h6 {
+	font-size: 1.1em;
+	font-weight: 400;
+}
+
+code {
+	font-family: 'Fira Mono', monospace;
+	padding: 1px 5px;
+	@apply bg-gray-300 dark:bg-gray-600;
+}
+
+pre code{
+	display: inline-block;
+}
+
+.cell[data-language='markdown'] .cell-output pre {
+	margin: 1.5em 2em;
+	border: 0;
+	line-height: 1.3;
+	padding: 0;
+	white-space: pre-wrap;
+	@apply: bg-white dark:bg-black;
+}
+
+
+.cell-output {
+	margin: 0 auto;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: none;
+	font-size: 12px;
+	table-layout: fixed;
+	margin-left: auto;
+	margin-bottom: 1em;
+	margin-right: auto;
+}
+
+table code{
+	font-size: 12px;
+}
+
+thead {
+	border-bottom: 1px solid #bdbdbd;
+	vertical-align: bottom;
+}
+
+tbody:nth-child(even) tr:nth-child(odd) {
+	@apply bg-gray-200 dark:bg-gray-800;
+}
+
+tr td{
+	vertical-align: middle;
+	padding: 0.5em 0.5em;
+	line-height: normal;
+	white-space: normal;
+	max-width: none;
+	border: none;
+}
+
+.CodeMirror {
+	height: auto;
+	width: auto;
+	@apply border border-gray-400 rounded-sm dark:border-gray-700;
+}
+
+svg{
+    @apply w-10 h-10 hover:shadow-2xl hover:bg-green-400 rounded-lg transition-all;
+}
+.actionbar svg{
+	@apply w-8 h-8;
+}
+.svg-stroke{
+	@apply stroke-current;
+}
+.cell{
+	@apply mt-2 mb-2 p-1 rounded border border-l-2 border-transparent;
+}
+.cell-selected{
+	@apply border-green-500;
+}

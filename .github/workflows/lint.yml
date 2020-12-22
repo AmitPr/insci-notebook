@@ -16,9 +16,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install black
     - name: Install Modules
-      run: yarn
+      run: npm install
     - name: Lint js/ts with ESLint
-      run: yarn run lint
+      run: npm run lint
     - name: Lint python with black
       run: |
         black .

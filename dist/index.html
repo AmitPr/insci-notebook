@@ -26,29 +26,32 @@
     </script>
 </head>
 
-<body>
-    <header>
-        <div class="header">
-            <div class="logo">
-                <h1>INSCI</h1>
+<body class="bg-white dark:bg-black text-black dark:text-white">
+    <header class="text-gray-700 dark:text-gray-200 body-font fixed w-full z-100 bg-white dark:bg-black">
+        <div class="container mx-auto p-4 border-b border-gray-400 dark:border-gray-800">
+            <div class="flex flex-wrap flex-col md:flex-row items-center">
+                <a
+                    class="flex title-font font-medium items-center text-gray-900 dark:text-gray-100 mb-4 md:mb-0 md:border-r md:border-gray-400 md:dark:border-gray-800 md:mr-4 md:py-1 md:pr-4">
+                    <span class="ml-3 text-xl">INSCI</span>
+                </a>
+                <input type="text"
+                    class="bg-transparent inline-flex items-center md:mr-auto text-base outline-none text-center md:text-left"
+                    value="Notebook Title" autocomplete=off></input>
+                <button class="theme-toggle" />
             </div>
-            <div class="title">
-                <h1>Notebook Title</h1>
+            <div class="flex flex-wrap flex-col md:flex-row items-center">
+                <nav class="actionbar flex flex-wrap items-center text-base justify-center">
+                    <button class="button-new-cell" />
+                    <button class="button-delete-cell" />
+                </nav>
             </div>
         </div>
     </header>
-    <div class="container">
-        <div class="actionbar">
-            <div class="action-container">
-                <button class="theme-toggle" />
-                <button class="button-new-cell" />
-                <button class="button-delete-cell" />
+    <div class="pt-40 md:pt-24">
+        <div class="body container mx-auto shadow p-2 m-2">
+            <div class="notebook flex flex-wrap flex-col">
             </div>
         </div>
-        <div class="notebook">
-
-        </div>
-    </div>
 </body>
 
 </html>
