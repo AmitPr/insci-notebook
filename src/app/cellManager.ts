@@ -99,7 +99,8 @@ class CellManager {
         }
     }
     moveCell(c: Cell, from: number, to: number): void {
-
+        //TODO
+        return;
     }
 }
 

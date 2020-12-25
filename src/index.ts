@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const moveCellUpButton: Button = new Button(moveCellUpContainer, arrowUp, () => {
             if (cellManager.activeCell) {
                 const index: number = cellManager.cells.indexOf(cellManager.activeCell);
-                var tmp = cellManager.cells.splice(index, 1)[0];
+                const tmp = cellManager.cells.splice(index, 1)[0];
                 cellManager.cells.splice(index - 1, 0, tmp);
             }
         });
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const moveCellDownButton: Button = new Button(moveCellDownContainer, arrowDown, () => {
             if (cellManager.activeCell) {
                 const index: number = cellManager.cells.indexOf(cellManager.activeCell);
-                var tmp = cellManager.cells.splice(index, 1)[0];
+                const tmp = cellManager.cells.splice(index, 1)[0];
                 cellManager.cells.splice(index + 1, 0, tmp);
             }
         });
