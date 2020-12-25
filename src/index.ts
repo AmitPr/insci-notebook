@@ -5,7 +5,11 @@ import { Button } from './app/component/button';
 import dayNightToggle from './static/day-night-toggle.svg';
 import plusCircle from './static/plus-circle.svg';
 import trash from './static/trash.svg';
+import arrowUp from './static/arrow-up.svg';
+import arrowDown from './static/arrow-down.svg';
+import run from './static/run.svg';
 
+import './style/application.css';
 import './style/main.css';
 
 /*
@@ -28,35 +32,73 @@ document.addEventListener("DOMContentLoaded", function () {
     notebook["cells"].forEach((cell: any) => {
         cellManager.createCell(cell);
     });
-    const themeToggleContainer: HTMLElement = document.querySelector(".theme-toggle") as HTMLElement;
-    const animate = function () {
-        document.documentElement.setAttribute("data-state", "transition");
-        if (currentTheme == "dark") {
-            const elements: any[] = Array.from(themeToggleContainer.getElementsByClassName('day-night-animate'));
-            elements.forEach(e => {
-                e.beginElement();
-            });
-        } else if (currentTheme == "light") {
-            const elements: any[] = Array.from(themeToggleContainer.getElementsByClassName('night-day-animate'));
-            elements.forEach(e => {
-                e.beginElement();
-            });
+    if (document.querySelector(".button-theme-toggle")) {
+        const themeToggleContainer: HTMLElement = document.querySelector(".button-theme-toggle") as HTMLElement;
+        const animate = function () {
+            document.documentElement.setAttribute("data-state", "transition");
+            if (currentTheme == "dark") {
+                const elements: any[] = Array.from(themeToggleContainer.getElementsByClassName('day-night-animate'));
+                elements.forEach(e => {
+                    e.beginElement();
+                });
+            } else if (currentTheme == "light") {
+                const elements: any[] = Array.from(themeToggleContainer.getElementsByClassName('night-day-animate'));
+                elements.forEach(e => {
+                    e.beginElement();
+                });
+            }
         }
-    }
-    const themeToggleButton: Button = new Button(themeToggleContainer, dayNightToggle, () => {
-        toggleTheme();
+        const themeToggleButton: Button = new Button(themeToggleContainer, dayNightToggle, () => {
+            toggleTheme();
+            animate();
+            window.setTimeout(() => {
+                document.documentElement.setAttribute("data-state", "");
+            }, 250)
+        });
         animate();
-        window.setTimeout(() => {
-            document.documentElement.setAttribute("data-state", "");
-        }, 250)
-    });
-    animate();
-    const newButtonContainer: HTMLElement = document.querySelector(".button-new-cell") as HTMLElement;
-    const newCellButton: Button = new Button(newButtonContainer, plusCircle, () => {
-        cellManager.newCell(null, "python");
-    });
-    const deleteButtonContainer: HTMLElement = document.querySelector(".button-delete-cell") as HTMLElement;
-    const deleteCellButton: Button = new Button(deleteButtonContainer, trash, () => {
-        cellManager.deleteCell(cellManager.activeCell);
-    });
+    }
+    if (document.querySelector(".button-new-cell")) {
+        const newButtonContainer: HTMLElement = document.querySelector(".button-new-cell") as HTMLElement;
+        const newCellButton: Button = new Button(newButtonContainer, plusCircle, () => {
+            cellManager.newCell(null, "python");
+        });
+    }
+
+    if (document.querySelector(".button-delete-cell")) {
+        const deleteButtonContainer: HTMLElement = document.querySelector(".button-delete-cell") as HTMLElement;
+        const deleteCellButton: Button = new Button(deleteButtonContainer, trash, () => {
+            cellManager.deleteCell(cellManager.activeCell);
+        });
+    }
+
+    if (document.querySelector(".button-move-up-cell")) {
+        const moveCellUpContainer: HTMLElement = document.querySelector(".button-move-up-cell") as HTMLElement;
+        const moveCellUpButton: Button = new Button(moveCellUpContainer, arrowUp, () => {
+            if (cellManager.activeCell) {
+                const index: number = cellManager.cells.indexOf(cellManager.activeCell);
+                var tmp = cellManager.cells.splice(index, 1)[0];
+                cellManager.cells.splice(index - 1, 0, tmp);
+            }
+        });
+    }
+
+    if (document.querySelector(".button-move-down-cell")) {
+        const moveCellDownContainer: HTMLElement = document.querySelector(".button-move-down-cell") as HTMLElement;
+        const moveCellDownButton: Button = new Button(moveCellDownContainer, arrowDown, () => {
+            if (cellManager.activeCell) {
+                const index: number = cellManager.cells.indexOf(cellManager.activeCell);
+                var tmp = cellManager.cells.splice(index, 1)[0];
+                cellManager.cells.splice(index + 1, 0, tmp);
+            }
+        });
+    }
+
+    if (document.querySelector(".button-run-cell")) {
+        const runCellContainer: HTMLElement = document.querySelector(".button-run-cell") as HTMLElement;
+        const runCellButton: Button = new Button(runCellContainer, run, () => {
+            if (cellManager.activeCell) {
+                cellManager.runCell(cellManager.activeCell);
+            }
+        });
+    }
 });

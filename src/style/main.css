@@ -1,8 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import 'variables.css';
+
+html {font-size: 125%;}
 
 :root[data-state="transition"] * {
 	transition: all 250ms ease-in-out;
@@ -18,35 +16,21 @@ body {
 	margin: 0;
 }
 
-h1 {
-	font-size: 2em;
+h1, h2, h3, h4, h5 {
 	font-weight: 400;
 }
 
-h2 {
-	font-size: 1.8em;
-	font-weight: 400;
-}
+h1 {font-size: 2em;}
 
-h3 {
-	font-size: 1.5em;
-	font-weight: 400;
-}
+h2 {font-size: 1.8em;}
 
-h4 {
-	font-size: 1.3em;
-	font-weight: 400;
-}
+h3 {font-size: 1.5em;}
 
-h5 {
-	font-size: 1.2em;
-	font-weight: 400;
-}
+h4 {font-size: 1.3em;}
 
-h6 {
-	font-size: 1.1em;
-	font-weight: 400;
-}
+h5 {font-size: 1.2em;}
+
+h6 {font-size: 1.1em;}
 
 code {
 	font-family: 'Fira Mono', monospace;
@@ -112,7 +96,7 @@ tr td{
 }
 
 svg{
-    @apply w-10 h-10 hover:shadow-2xl hover:bg-green-400 rounded-lg transition-all;
+    @apply rounded-lg transition-all;
 }
 .actionbar svg{
 	@apply w-8 h-8;
@@ -125,4 +109,8 @@ svg{
 }
 .cell-selected{
 	@apply border-green-500;
+}
+
+.action-button{
+	@apply flex justify-center align-middle bg-gray-300 bg-opacity-20 hover:bg-green-500 hover:bg-opacity-100 rounded-full transition-all outline-none focus:outline-none hover:shadow-lg focus:shadow hover:-mt-0.5 hover:mb-0.5 active:mt-0 active:mb-0;
 }

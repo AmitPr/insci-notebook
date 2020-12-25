@@ -72,9 +72,13 @@ class CellManager {
         return c;
     }
 
-    runCell(cm: CodeMirror.Editor): void {
+    runCell(c: CodeMirror.Editor | Cell): void {
+        if (c instanceof Cell) {
+            c.runCell();
+            return;
+        }
         this.cells.forEach(cell => {
-            if (cell.editor == cm) {
+            if (cell.editor == c) {
                 cell.runCell();
                 return;
             }
@@ -93,6 +97,9 @@ class CellManager {
         return {
             cells: this.cells
         }
+    }
+    moveCell(c: Cell, from: number, to: number): void {
+
     }
 }
 

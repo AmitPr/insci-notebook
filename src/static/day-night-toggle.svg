@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+<svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 256 256">
     <defs />
     <rect width="256" height="256" fill="none" />
     <circle class="svg-stroke" fill="#fbc02d" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" cx="90" cy="110" r="48">
