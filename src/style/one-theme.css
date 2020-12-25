@@ -1,0 +1,203 @@
+.light {
+	.cm-s-one-theme.CodeMirror {
+		background: #fafafa;
+		color: #383a42;
+		font: 300 13px 'Fira Mono', monospace;
+	}
+
+	.cm-s-one-theme {
+		div.CodeMirror-selected {
+			background: #ededed !important;
+		}
+
+		.CodeMirror-gutters {
+			background: #fafafa;
+			border-right: 0px;
+		}
+
+		.CodeMirror-linenumber {
+			color: #9d9d9f;
+		}
+
+		.CodeMirror-cursor {
+			border-left: 2px solid #526fff !important;
+		}
+
+		span.cm-atom {
+			color: #986801;
+		}
+
+		span.cm-number {
+			color: #986801;
+		}
+
+		span.cm-property {
+			color: #0184bc;
+		}
+
+		span.cm-attribute {
+			color: #0184bc;
+		}
+
+		span.cm-keyword {
+			color: #A626A4;
+		}
+
+		span.cm-builtin {
+			color: #A626A4;
+		}
+
+		span.cm-string {
+			color: #50a14f;
+		}
+
+		.cm-comment {
+			font-style: italic;
+			color: #a0a1a7;
+		}
+
+		span.cm-variable {
+			color: #383a42;
+		}
+
+		span.cm-variable-2 {
+			color: #e45649;
+		}
+
+		span.cm-variable-3 {
+			color: #986801;
+		}
+
+		span.cm-def {
+			color: #526fff;
+		}
+
+		span.cm-meta {
+			color: #e45649;
+		}
+
+		span.cm-error {
+			background: #ac4142;
+			color: #505050;
+		}
+
+		span.cm-bracket {
+			color: #202020;
+		}
+
+		span.cm-tag {
+			color: #ac4142;
+		}
+
+		span.cm-link {
+			color: #A0A1A7;
+		}
+
+		.CodeMirror-matchingbracket {
+			text-decoration: underline;
+			color: white !important;
+		}
+	}
+}
+
+.dark {
+	.cm-s-one-theme.CodeMirror {
+		background: #282c34;
+		color: #abb2bf;
+		font: 300 13px 'Fira Mono', monospace;
+	}
+
+	.cm-s-one-theme {
+		div.CodeMirror-selected {
+			background: #3a3f4b !important;
+		}
+
+		.CodeMirror-gutters {
+			background: #282c34;
+			border-right: 0px;
+		}
+
+		.CodeMirror-linenumber {
+			color: #9d9d9f;
+		}
+
+		.CodeMirror-cursor {
+			border-left: 2px solid #528bff !important;
+		}
+
+		span.cm-atom {
+			color: #d19a66;
+		}
+
+		span.cm-number {
+			color: #d19a66;
+		}
+
+		span.cm-property {
+			color: #56b6c2;
+		}
+
+		span.cm-attribute {
+			color: #56b6c2;
+		}
+
+		span.cm-keyword {
+			color: #c678dd;
+		}
+
+		span.cm-builtin {
+			color: #c678dd;
+		}
+
+		span.cm-string {
+			color: #98c379;
+		}
+
+		.cm-comment {
+			font-style: italic;
+			color: #5c6370;
+		}
+
+		span.cm-variable {
+			color: #abb2bf;
+		}
+
+		span.cm-variable-2 {
+			color: #e06c75;
+		}
+
+		span.cm-variable-3 {
+			color: #d19a66;
+		}
+
+		span.cm-def {
+			color: #528bff;
+		}
+
+		span.cm-meta {
+			color: #e06c75;
+		}
+
+		span.cm-error {
+			background: #ac4142;
+			color: #505050;
+		}
+
+		span.cm-bracket {
+			color: #202020;
+		}
+
+		span.cm-tag {
+			color: #ac4142;
+		}
+
+		span.cm-link {
+			color: #5c6370;
+		}
+
+		.CodeMirror-matchingbracket {
+			text-decoration: underline;
+			color: white !important;
+		}
+	}
+}

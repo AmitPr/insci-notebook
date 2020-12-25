@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="#000000" viewBox="0 0 256 256">
+    <rect width="256" height="256" fill="none"></rect>
+    <path class="svg-stroke" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" d="M32 128a96 96 0 10192 0a96 96 0 10-192 0" stroke-dasharray="240%">
+        <animate class="circle-fill" attributeName="stroke-dashoffset" attributeType="XML" type="translate" from="240%" to="0%" fill="freeze" begin="indefinite" dur="0.25s" />
+        <animate class="circle-empty" attributeName="stroke-dashoffset" attributeType="XML" type="translate" from="0%" to="240%" fill="freeze" begin="indefinite" dur="0.25s" />
+    </path>
+    <line class="svg-stroke" x1="88" y1="128" x2="168" y2="128" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></line>
+    <line class="svg-stroke" x1="128" y1="88" x2="128" y2="168" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></line>
+</svg>
