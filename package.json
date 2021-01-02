@@ -6,7 +6,7 @@
   "author": "Amit Prasad <17amitprasad@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/codemirror": "^0.0.102",
+    "@types/codemirror": "^0.0.103",
     "@types/marked": "^1.2.1",
     "autoprefixer": "^10.1.0",
     "codemirror": "^5.59.1",
