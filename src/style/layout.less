@@ -1,0 +1,91 @@
+.margin-0 {
+    margin: 0;
+}
+
+.container {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media @xs {
+        width: 100%;
+    }
+
+    @media @sm {
+        max-width: 620px;
+    }
+
+    @media @md {
+        max-width: 748px;
+    }
+
+    @media @lg {
+        max-width: 1004px;
+    }
+
+    @media @xl {
+        max-width: 1260px;
+    }
+
+    @media @2xl {
+        max-width: 1516px;
+    }
+}
+
+header {
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+
+    h1 {
+        display: inline;
+        padding: 0 0.25rem;
+        border-right: 1px solid @gray-500;
+    }
+
+    div.document-title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0.25rem;
+        box-sizing: border-box;
+    }
+
+
+    button {
+        padding: 0;
+    }
+
+    svg {
+        height: 1.75rem;
+        width: 1.75rem;
+        display: block;
+    }
+
+    div.actionbar {
+        width: 100%;
+        height: 2.5em;
+        padding: 0.25em 1em;
+        padding-bottom: 0;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+header {
+    height: 95px;
+}
+
+div.container {
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.cell{
+    margin: 20px 0;
+}

@@ -12,11 +12,13 @@ class CellManager {
     activeCell: Cell | null;
     pyodideWrapper: PyodideWrapper;
     container: HTMLElement;
+    typeSelector: HTMLSelectElement;
     constructor() {
         this.cells = [];
         this.activeCell = null;
         this.pyodideWrapper = new PyodideWrapper();
         this.container = document.body.querySelector(".notebook") as HTMLElement;
+        this.typeSelector = document.querySelector("#cell-type") as HTMLSelectElement;
         window.cellManager = this;
     }
     assertNever(t: string): never {
@@ -91,6 +93,7 @@ class CellManager {
         }
         this.activeCell = cell;
         this.activeCell.container.classList.add('cell-selected');
+        this.typeSelector.value=cell.type;
     }
 
     toJSON(): CellManagerSerialized {
