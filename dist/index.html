@@ -6,15 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notebook</title>
     <script src="bundle.js"></script>
-    <!--KaTeX - LaTeX Renderer
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
-        integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js"
-        integrity="sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4"
-        crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
-        integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
-        onload="renderLaTeX()"></script>-->
     <link
         href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@300;400&family=Fira+Sans:wght@300;400;500&display=swap"
         rel="stylesheet">
@@ -26,67 +17,58 @@
     </script>
 </head>
 
-<body class="bg-white dark:bg-black text-black dark:text-white font-light">
-    <div class="md:flex h-screen">
-        <div class="sidebar bg-blue-800 w-60 p-2 flex flex-col">
-            <h1 class="font-thin text-gray-100">INSCI</h1>
-            <hr class="mt-1 mb-1 border-gray-400 w-1/5">
-            <div>
-                <button
-                    class="button-run-cell action-button">
-                    <div class="icon items-center p-1.5 inline-block"></div>
-                    <span class="inline-flex items-center text-gray-300 font-thin mx-2">Run Cell</span>
-                </button>
-                <button
-                    class="button-new-cell action-button">
-                    <div class="icon items-center p-1.5 inline-block"></div>
-                    <span class="inline-flex items-center text-gray-300 font-thin mx-2">New Cell</span>
-                </button>
-                <button
-                    class="button-delete-cell action-button">
-                    <div class="icon items-center p-1.5 inline-block"></div>
-                    <span class="inline-flex items-center text-gray-300 font-thin mx-2">Delete Cell</span>
-                </button>
-                <button
-                    class="button-move-up-cell action-button">
-                    <div class="icon items-center p-1.5 inline-block"></div>
-                    <span class="inline-flex items-center text-gray-300 font-thin mx-2">Move Cell Up</span>
-                </button>
-                <button
-                    class="button-move-down-cell action-button">
-                    <div class="icon items-center p-1.5 inline-block"></div>
-                    <span class="inline-flex items-center text-gray-300 font-thin mx-2">Move Cell Down</span>
-                </button>
+<body class="margin-0">
+    <header>
+        <div class="document-title">
+            <h1 class="margin-0 weight-300">INSCI</h1>
+            <div class="title-container">
+                <span class="title weight-300" contenteditable="true" onfocus="focusTitle(this);" onkeyup="edited=true;"
+                    onblur="unfocusTitle(this);" data-placeholder="Untitled Notebook">Notebook Title</span>
+                <script>
+                    var edited = false;
+                    function unfocusTitle(e) {
+                        if (e.textContent == e.dataset.placeholder && !edited) {
+                            e.textContent = "";
+                        }
+                        e.scrollLeft = 0;
+                        document.title = e.textContent;
+                    }
+                    function focusTitle(e) {
+                        edited = false;
+                        if (!e.textContent)
+                            e.textContent = e.dataset.placeholder;
+                    }
+                </script>
             </div>
-            <div class="mb-auto"></div>
-            <hr class="mt-1 mb-1 border-gray-400 w-1/5">
-            <div>
-                <button class="button-theme-toggle flex justify-center align-middle">
-                    <div class="icon items-center rounded-lg p-1.5 inline-block"></div><span
-                        class="inline-flex items-center text-gray-300 font-thin ml-2">Toggle Dark Mode</span>
-                </button>
+            <div class="button-group">
+                <button class="button-theme-toggle"></button>
             </div>
         </div>
-        <!-- <header class="text-gray-700 dark:text-gray-200 body-font fixed w-full z-100 bg-white dark:bg-black">
-            <div class="mx-auto p-4 border-b border-gray-400 dark:border-gray-800">
-                <div class="flex flex-wrap flex-col md:flex-row items-center">
-                    <input type="text"
-                        class="bg-transparent inline-flex items-center md:mr-auto text-base outline-none text-center md:text-left"
-                        value="Notebook Title" autocomplete=off></input>
-                </div>
-                <div class="flex flex-wrap flex-col md:flex-row items-center">
-                    <nav class="actionbar flex flex-wrap items-center text-base justify-center">
-                    </nav>
-                </div>
+        <div class="actionbar">
+            <div class="button-group">
+                <button class="button-new-cell"></button>
+                <button class="button-delete-cell"></button>
             </div>
-        </header> -->
-        <div class="flex-1 flex overflow-hidden">
-            <div class="flex-1 overflow-y-scroll">
-                <div class="body container mx-auto p-2">
-                    <div class="notebook flex flex-wrap flex-col">
-                    </div>
-                </div>
+            <div class="spacer"></div>  
+            <div class="button-group">
+                <button class="button-run-cell"></button>
             </div>
+            <div class="spacer"></div>
+            <div class="button-group">
+                <select name="cell-type" id="cell-type" onchange="cellManager.newCell(cellManager.activeCell, this.value);">
+                    <option value="python">Python</option>
+                    <option value="markdown">Markdown</option>
+                </select>
+            </div>
+            <div class="spacer"></div>
+            <div class="button-group">
+                <button class="button-move-down-cell"></button>
+                <button class="button-move-up-cell"></button>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="notebook flex flex-wrap flex-col">
         </div>
     </div>
 </body>

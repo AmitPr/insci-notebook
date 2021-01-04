@@ -8,6 +8,9 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    devServer: {
+        contentBase: './dist',
+    },
     module: {
         rules: [
             {
@@ -16,8 +19,12 @@ module.exports = {
                 exclude: /node_modules/,
             }, {
                 test: /\.css$/,
-                use: ['style-loader','css-loader', 'postcss-loader'],
-            },  
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.less$/,
+                use: ['style-loader', 'css-loader', 'less-loader'],
+            },
             {
                 test: /\.svg$/,
                 loader: 'raw-loader'

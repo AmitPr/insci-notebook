@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CellManager } from './app/cellManager';
 import { toggleTheme, currentTheme } from './style/styler';
 import { Button } from './app/component/button';
@@ -9,8 +10,7 @@ import arrowUp from './static/arrow-up.svg';
 import arrowDown from './static/arrow-down.svg';
 import run from './static/run.svg';
 
-import './style/application.css';
-import './style/main.css';
+import './style/main.less';
 
 /*
 function renderLaTeX() {
@@ -47,13 +47,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     e.beginElement();
                 });
             }
+            
+            window.setTimeout(() => {
+                document.documentElement.setAttribute("data-state", "");
+            }, 250);
         }
         const themeToggleButton: Button = new Button(themeToggleContainer, dayNightToggle, () => {
             toggleTheme();
             animate();
-            window.setTimeout(() => {
-                document.documentElement.setAttribute("data-state", "");
-            }, 250)
         });
         animate();
     }

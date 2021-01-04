@@ -10,8 +10,6 @@ import '../codemirror-modes/markdown.js';
 import '../codemirror-modes/python.js';
 
 
-import '../../style/one-theme.css';
-
 abstract class Cell {
     container: HTMLElement;
     _content: string;
@@ -100,6 +98,7 @@ abstract class Cell {
             lineNumbers: true,
         });
         editor.setValue(content);
+        editor.refresh();
         return editor;
     }
     toJSON(): CellSerialized {

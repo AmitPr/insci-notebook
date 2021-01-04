@@ -1,0 +1,52 @@
+header {
+    background-color: inherit;
+    div.title-container {
+        margin-left: 0.25rem;
+        margin-right: auto;
+        max-width: 50%;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+
+        span.title {
+            max-width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            font-family: @font-text;
+            font-size: @h3;
+            min-height: @h4;
+            display: inline-block;
+            border: 1px solid transparent;
+            margin: 1px;
+            padding: 0 0.25rem;
+            border-radius: 5px;
+            box-sizing: border-box;
+
+            br {
+                display: none;
+            }
+        }
+
+        span.title:empty:not(:focus):before {
+            content: attr(data-placeholder);
+            color: @gray-500;
+            font-style: italic;
+        }
+
+        span.title:hover {
+            border-color: @gray-200;
+        }
+
+        span.title:focus {
+            border-color: @primary;
+            border-width: 2px;
+            margin: 0;
+        }
+    }
+
+    div.actionbar {
+        border: 1px solid;
+        border-right: none;
+        border-left: none;
+    }
+}
