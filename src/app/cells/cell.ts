@@ -1,3 +1,4 @@
+import { App } from '../App';
 import { render, html } from 'uhtml';
 import CodeMirror from 'codemirror';
 
@@ -41,7 +42,7 @@ abstract class Cell {
         this.container = container;
         this.container.classList.add("cell");
         this.container.onclick = () => {
-            window.cellManager.setActiveCell(this);
+            App.instance().cellManager.setActiveCell(this);
         };
         this._type = type;
         this.container.dataset.language = this.type;
@@ -87,7 +88,7 @@ abstract class Cell {
                     cm.replaceSelection(spaces);
                 },
                 'Shift-Enter': function (cm: CodeMirror.Editor) {
-                    window.cellManager.runCell(cm);
+                    App.instance().cellManager.runCell(cm);
                     return;
                 },
             },
@@ -95,7 +96,7 @@ abstract class Cell {
             theme: 'one-theme',
             scrollbarStyle: 'overlay',
             viewportMargin: Infinity,
-            lineNumbers: true,
+            lineNumbers: true
         });
         editor.setValue(content);
         editor.refresh();

@@ -1,4 +1,5 @@
-import { Cell } from "./cell";
+import { App } from "../../App";
+import { Cell } from "../../cells/cell";
 import { render, html } from 'uhtml';
 
 class PythonCell extends Cell {
@@ -10,7 +11,7 @@ class PythonCell extends Cell {
         this.outputStatus = this.container.querySelector(".py-output-status") as HTMLElement;
     }
     runCell(): void {
-        window.cellManager.pyodideWrapper.runPython(this);
+        App.instance().cellManager.pyodideWrapper.runPython(this);
         return;
     }
     resetOutput(): void {

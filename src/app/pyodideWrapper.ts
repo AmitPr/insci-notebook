@@ -1,5 +1,6 @@
 import { initialize } from './pyodide/pyodide.js';
-import { PythonCell } from './cells/pythonCell.js';
+import { PythonCell } from './plugins/builtin/pythonCell.js';
+import { App } from './App';
 
 declare global {
     interface Window { languagePluginUrl: string; logger: any; pyodide: any; }
@@ -15,7 +16,7 @@ class PyodideWrapper {
         //Will Capture print() statements from python
         window.logger = new Object();
         window.logger.print = function (message: string) {
-            window.cellManager.pyodideWrapper.renderOutput(message);
+            App.instance().cellManager.pyodideWrapper.renderOutput(message);
         }
         this.initialized = false;
         this.currentCell = null;

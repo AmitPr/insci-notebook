@@ -1,11 +1,8 @@
+import { Cells } from './Cells';
 import { Cell } from './cells/cell';
-import { MarkdownCell } from './cells/markdownCell';
-import { PythonCell } from './cells/pythonCell';
+import { MarkdownCell } from './plugins/builtin/markdownCell';
+import { PythonCell } from './plugins/builtin/pythonCell';
 import { PyodideWrapper } from './pyodideWrapper';
-
-declare global {
-    interface Window { cellManager: CellManager; }
-}
 
 class CellManager {
     cells: Cell[];
@@ -19,7 +16,6 @@ class CellManager {
         this.pyodideWrapper = new PyodideWrapper();
         this.container = document.body.querySelector(".notebook") as HTMLElement;
         this.typeSelector = document.querySelector("#cell-type") as HTMLSelectElement;
-        window.cellManager = this;
     }
     assertNever(t: string): never {
         throw new Error("Unknown Cell Type: " + t);
@@ -59,19 +55,7 @@ class CellManager {
     }
 
     initializeFromType(cellContainer: HTMLElement, cellType: string, cellContent: string): Cell {
-        let c: Cell;
-        switch (cellType) {
-            case "markdown":
-                c = new MarkdownCell(cellContainer, cellType, cellContent);
-                break;
-            case "python":
-                c = new PythonCell(cellContainer, cellType, cellContent);
-                break;
-            default:
-                this.assertNever(cellType);
-                break;
-        }
-        return c;
+        return new Cells.builtins[cellType](cellContainer,cellType,cellContent);
     }
 
     runCell(c: CodeMirror.Editor | Cell): void {
