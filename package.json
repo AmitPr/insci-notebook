@@ -31,7 +31,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts --fix",
     "pack": "webpack -c webpack.config.js",
-    "start": "webpack -c webpack.config.js serve"
+    "start": "webpack serve -c webpack.config.js"
   },
   "engines": {
     "yarn": "YARN NO LONGER USED - use npm instead."

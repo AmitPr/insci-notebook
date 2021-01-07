@@ -93,7 +93,7 @@ class CellManager {
         }
         this.activeCell = cell;
         this.activeCell.container.classList.add('cell-selected');
-        this.typeSelector.value=cell.type;
+        this.typeSelector.value = cell.type;
     }
 
     toJSON(): CellManagerSerialized {
@@ -104,6 +104,12 @@ class CellManager {
     moveCell(c: Cell, from: number, to: number): void {
         //TODO
         return;
+    }
+    render(): void {
+        var frag: DocumentFragment = document.createDocumentFragment();
+        this.cells.forEach((cell)=>{
+            this.container.appendChild(cell.container);
+        });
     }
 }
 

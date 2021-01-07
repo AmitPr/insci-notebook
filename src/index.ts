@@ -79,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const index: number = cellManager.cells.indexOf(cellManager.activeCell);
                 const tmp = cellManager.cells.splice(index, 1)[0];
                 cellManager.cells.splice(index - 1, 0, tmp);
+                cellManager.render();
             }
         });
     }
@@ -90,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const index: number = cellManager.cells.indexOf(cellManager.activeCell);
                 const tmp = cellManager.cells.splice(index, 1)[0];
                 cellManager.cells.splice(index + 1, 0, tmp);
+                cellManager.render();
             }
         });
     }
