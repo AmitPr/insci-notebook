@@ -1,7 +1,6 @@
-import { Cell } from "../../cells/cell";
+import { Cell } from "../../../cells/cell";
+import { Markdown } from "./Markdown";
 
-import marked from 'marked';
-import katex from 'katex';
 
 class MarkdownCell extends Cell {
     constructor(container: HTMLElement, type: string, content: string) {
@@ -10,14 +9,7 @@ class MarkdownCell extends Cell {
         this.runCell();
     }
     runCell(): void {
-        let formatted: string;
-        if(!this.content)
-        formatted = marked("*Empty markdown cell*");
-        else
-            formatted = marked(this.content);
-            
-        //formatted = katex.renderToString(formatted);
-        this.outputWrapper.innerHTML = formatted;
+        this.outputWrapper.innerHTML = Markdown.format(this.content);
         this.setEditMode(false);
     }
     setEditMode(active: boolean): void {

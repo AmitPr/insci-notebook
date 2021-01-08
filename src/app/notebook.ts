@@ -1,6 +1,5 @@
 import { Cells } from './Cells';
 import { Cell } from './cells/cell';
-import { MarkdownCell } from './plugins/builtin/markdownCell';
 import { PythonCell } from './plugins/builtin/pythonCell';
 import { PyodideWrapper } from './pyodideWrapper';
 

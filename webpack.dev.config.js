@@ -1,7 +1,8 @@
 const path = require('path');
 
 module.exports = {
-    mode: 'production',
+    mode: "development",
+    devtool: 'inline-source-map',
     entry: [
         './src/app/App.ts',
         './src/app/plugins/builtin/Markdown/Markdown.ts'
@@ -9,6 +10,9 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
+    },
+    devServer: {
+        contentBase: './dist',
     },
     module: {
         rules: [

@@ -42,6 +42,9 @@
     .svg-stroke {
         stroke: black;
     }
+    tbody:nth-child(even) tr:nth-child(odd) {
+        background-color: @gray-100;
+    }
 }
 
 .dark {
@@ -56,5 +59,9 @@
 
     .svg-stroke {
         stroke: white;
+    }
+    
+    tbody:nth-child(even) tr:nth-child(odd) {
+        background-color: @gray-900;
     }
 }
