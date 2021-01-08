@@ -11,7 +11,7 @@
     "codemirror": "^5.58.3",
     "katex": "^0.12.0",
     "marked": "^1.2.5",
-    "uhtml": "^2.1.4"
+    "uhtml": "^2.2.1"
   },
   "devDependencies": {
     "@types/katex": "^0.11.0",
