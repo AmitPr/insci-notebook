@@ -4,6 +4,8 @@ import { MarkdownCell } from "./markdownCell";
 import marked from 'marked';
 import katex from 'katex';
 
+import './Markdown.less';
+
 @Plugin
 class Markdown {
     static format(content: string): string {

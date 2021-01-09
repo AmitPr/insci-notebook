@@ -1,8 +1,8 @@
 {
-  "name": "nbconvert-pyodide",
+  "name": "insci",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/AmitPr/nbconvert-pyodide.git",
+  "repository": "https://github.com/AmitPr/insci.git",
   "author": "Amit Prasad <17amitprasad@gmail.com>",
   "license": "MIT",
   "dependencies": {
