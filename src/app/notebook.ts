@@ -1,7 +1,6 @@
-import { Cells } from './Cells';
-import { Cell } from './cells/cell';
-import { PythonCell } from './plugins/builtin/pythonCell';
-import { PyodideWrapper } from './pyodideWrapper';
+import { Cells, Cell } from './Cells';
+import { PythonCell } from './plugins/builtin/Python/pythonCell';
+import { PyodideWrapper } from './plugins/builtin/Python/pyodideWrapper';
 
 class CellManager {
     cells: Cell[];
@@ -89,7 +88,7 @@ class CellManager {
         return;
     }
     render(): void {
-        var frag: DocumentFragment = document.createDocumentFragment();
+        const frag: DocumentFragment = document.createDocumentFragment();
         this.cells.forEach((cell)=>{
             this.container.appendChild(cell.container);
         });

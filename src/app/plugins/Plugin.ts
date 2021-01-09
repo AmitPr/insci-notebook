@@ -1,11 +1,11 @@
-function Plugin<T extends new(...args: {}[]) => any>(target: T) {
+function Plugin<T extends new(...args: unknown[]) => any>(target: T): void {
     PluginLoader.plugins.push(target);
 }
 
 class PluginLoader {
-    public static plugins: (new(...args: {}[])=>any)[]=[];
+    public static plugins: (new(...args: unknown[])=>any)[]=[];
     constructor(){
-        for(let plugin of PluginLoader.plugins){
+        for(const plugin of PluginLoader.plugins){
             new plugin();
         }
     }

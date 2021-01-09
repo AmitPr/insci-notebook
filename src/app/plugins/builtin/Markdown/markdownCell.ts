@@ -1,4 +1,4 @@
-import { Cell } from "../../../cells/cell";
+import { Cell } from "../../../Cells";
 import { Markdown } from "./Markdown";
 
 

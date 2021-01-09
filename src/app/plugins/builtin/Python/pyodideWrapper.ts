@@ -1,6 +1,6 @@
-import { initialize } from './pyodide/pyodide.js';
-import { PythonCell } from './plugins/builtin/pythonCell.js';
-import { App } from './App';
+import { initialize } from '../../../pyodide/pyodide.js';
+import { PythonCell } from './pythonCell.js';
+import { App } from '../../../App';
 
 declare global {
     interface Window { languagePluginUrl: string; logger: any; pyodide: any; }

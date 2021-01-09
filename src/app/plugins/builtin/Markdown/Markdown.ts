@@ -8,9 +8,9 @@ import katex from 'katex';
 class Markdown {
     static format(content: string): string {
         let formatted: string;
-        if (!content){
+        if (!content) {
             formatted = marked("*Empty markdown cell*");
-        }else{
+        } else {
             formatted = marked(content);
         }
         return formatted;

@@ -4,7 +4,8 @@ module.exports = {
     mode: 'production',
     entry: [
         './src/app/App.ts',
-        './src/app/plugins/builtin/Markdown/Markdown.ts'
+        './src/app/plugins/builtin/Markdown/Markdown.ts',
+        './src/app/plugins/builtin/Python/Python.ts'
     ],
     output: {
         filename: 'bundle.js',

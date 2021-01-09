@@ -1,5 +1,5 @@
-import { App } from "../../App";
-import { Cell } from "../../cells/cell";
+import { App } from "../../../App";
+import { Cell } from '../../../Cells';
 import { render, html } from 'uhtml';
 
 class PythonCell extends Cell {
