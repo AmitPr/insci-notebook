@@ -1,22 +1,24 @@
 import { initialize } from '../../../pyodide/pyodide.js';
 import { PythonCell } from './pythonCell.js';
 import { App } from '../../../App';
+import { Notebook } from '../../../Notebook.js';
 
 declare global {
     interface Window { languagePluginUrl: string; logger: any; pyodide: any; }
 }
 class PyodideWrapper {
-
+    notebook: Notebook;
     currentCell: PythonCell | null;
     runCount: number;
     initialized: boolean;
 
-    constructor() {
+    constructor(notebook: Notebook) {
+        this.notebook=notebook;
         window.languagePluginUrl = 'https://pyodide-cdn2.iodide.io/v0.15.0/full/'
         //Will Capture print() statements from python
         window.logger = new Object();
-        window.logger.print = function (message: string) {
-            App.instance().cellManager.pyodideWrapper.renderOutput(message);
+        window.logger.print = (message: string) => {
+            this.notebook.pyodideWrapper.renderOutput(message);
         }
         this.initialized = false;
         this.currentCell = null;

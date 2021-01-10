@@ -1,17 +1,20 @@
 import { Cells, Cell } from './Cells';
+import { PluginLoader } from './plugins/Plugin';
 import { PythonCell } from './plugins/builtin/Python/pythonCell';
 import { PyodideWrapper } from './plugins/builtin/Python/pyodideWrapper';
 
-class CellManager {
+class Notebook {
+    private pl: PluginLoader;
     cells: Cell[];
     activeCell: Cell | null;
     pyodideWrapper: PyodideWrapper;
     container: HTMLElement;
     typeSelector: HTMLSelectElement;
     constructor() {
+        this.pl = new PluginLoader();
         this.cells = [];
         this.activeCell = null;
-        this.pyodideWrapper = new PyodideWrapper();
+        this.pyodideWrapper = new PyodideWrapper(this);
         this.container = document.body.querySelector(".notebook") as HTMLElement;
         this.typeSelector = document.querySelector("#cell-type") as HTMLSelectElement;
     }
@@ -38,7 +41,7 @@ class CellManager {
             this.cells[this.cells.indexOf(cell)] = c;
         } else {
             const cellContainer: HTMLElement = this.createCellContainer();
-            const c: Cell = new PythonCell(cellContainer, "python", "");
+            const c: Cell = new PythonCell(this, cellContainer, "python", "");
             this.cells.push(c);
         }
     }
@@ -53,7 +56,7 @@ class CellManager {
     }
 
     initializeFromType(cellContainer: HTMLElement, cellType: string, cellContent: string): Cell {
-        return new Cells.builtins[cellType](cellContainer,cellType,cellContent);
+        return new Cells.builtins[cellType](this, cellContainer,cellType,cellContent);
     }
 
     runCell(c: CodeMirror.Editor | Cell): void {
@@ -78,7 +81,7 @@ class CellManager {
         this.typeSelector.value = cell.type;
     }
 
-    toJSON(): CellManagerSerialized {
+    toJSON(): NotebookSerialized {
         return {
             cells: this.cells
         }
@@ -96,7 +99,7 @@ class CellManager {
 }
 
 
-export { CellManager };
-export interface CellManagerSerialized {
+export { Notebook };
+export interface NotebookSerialized {
     cells: Cell[];
 }

@@ -10,9 +10,11 @@ import './codemirror/addon/simplescrollbars.css';
 
 import './codemirror/mode/markdown.js';
 import './codemirror/mode/python.js';
+import { Notebook } from './Notebook';
 
 
 abstract class Cell {
+    notebook: Notebook;
     container: HTMLElement;
     _content: string;
 
@@ -38,12 +40,12 @@ abstract class Cell {
     outputWrapper: HTMLElement;
     inputWrapper: HTMLElement;
 
-    constructor(container: HTMLElement, type: string, content: string) {
-        CodeMirror.fromTextArea
+    constructor(notebook: Notebook, container: HTMLElement, type: string, content: string) {
+        this.notebook = notebook;
         this.container = container;
         this.container.classList.add("cell");
         this.container.onclick = () => {
-            App.instance().cellManager.setActiveCell(this);
+            this.notebook.setActiveCell(this);
         };
         this._type = type;
         this.container.dataset.language = this.type;
@@ -83,13 +85,13 @@ abstract class Cell {
                 fencedCodeBlockDefaultMode: 'python'
             },
             extraKeys: {
-                'Tab': function (cm: CodeMirror.Editor) {
+                'Tab': (cm: CodeMirror.Editor) => {
                     const indentUnit = cm.getOption("indentUnit") as number;
                     const spaces = Array(indentUnit + 1).join(" ");
                     cm.replaceSelection(spaces);
                 },
-                'Shift-Enter': function (cm: CodeMirror.Editor) {
-                    App.instance().cellManager.runCell(cm);
+                'Shift-Enter': (cm: CodeMirror.Editor) => {
+                    this.notebook.runCell(cm);
                     return;
                 },
             },
@@ -113,8 +115,8 @@ abstract class Cell {
 }
 
 class Cells {
-    public static builtins: { [type: string]: new (container: HTMLElement, type: string, content: string) => Cell } = {};
-    public static plugins: { [type: string]: new (container: HTMLElement, type: string, content: string) => Cell } = {};
+    public static builtins: { [type: string]: new (notebook: Notebook, container: HTMLElement, type: string, content: string) => Cell } = {};
+    public static plugins: { [type: string]: new (notebook: Notebook, container: HTMLElement, type: string, content: string) => Cell } = {};
 }
 
 export { Cells, Cell };

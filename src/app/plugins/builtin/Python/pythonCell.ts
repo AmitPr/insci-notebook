@@ -1,17 +1,18 @@
 import { App } from "../../../App";
 import { Cell } from '../../../Cells';
+import { Notebook } from "../../../Notebook";
 import { render, html } from 'uhtml';
 
 class PythonCell extends Cell {
     inputStatus: HTMLElement;
     outputStatus: HTMLElement;
-    constructor(container: HTMLElement, type: string, content: string) {
-        super(container, type, content);
+    constructor(notebook: Notebook, container: HTMLElement, type: string, content: string) {
+        super(notebook, container, type, content);
         this.inputStatus = this.container.querySelector(".py-input-status") as HTMLElement;
         this.outputStatus = this.container.querySelector(".py-output-status") as HTMLElement;
     }
     runCell(): void {
-        App.instance().cellManager.pyodideWrapper.runPython(this);
+        this.notebook.pyodideWrapper.runPython(this);
         return;
     }
     resetOutput(): void {
