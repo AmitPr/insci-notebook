@@ -1,8 +1,8 @@
 {
-  "name": "insci",
+  "name": "insci-notebook",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/AmitPr/insci.git",
+  "repository": "https://github.com/AmitPr/insci-notebook.git",
   "author": "Amit Prasad <17amitprasad@gmail.com>",
   "license": "MIT",
   "dependencies": {
@@ -33,8 +33,5 @@
     "lint": "eslint . --ext .ts --fix",
     "pack": "webpack -c webpack.config.js",
     "start": "webpack serve -c webpack.dev.config.js"
-  },
-  "engines": {
-    "yarn": "YARN NO LONGER USED - use npm instead."
   }
 }

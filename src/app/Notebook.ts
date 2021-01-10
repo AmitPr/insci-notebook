@@ -10,12 +10,12 @@ class Notebook {
     pyodideWrapper: PyodideWrapper;
     container: HTMLElement;
     typeSelector: HTMLSelectElement;
-    constructor() {
+    constructor(container: HTMLElement) {
         this.pl = new PluginLoader();
         this.cells = [];
         this.activeCell = null;
         this.pyodideWrapper = new PyodideWrapper(this);
-        this.container = document.body.querySelector(".notebook") as HTMLElement;
+        this.container = container;
         this.typeSelector = document.querySelector("#cell-type") as HTMLSelectElement;
     }
     assertNever(t: string): never {
