@@ -1,0 +1,4 @@
+[submodule "src/app/codemirror"]
+	path = src/app/codemirror
+	url = https://github.com/AmitPr/insci-codemirror.git
+	branch = master

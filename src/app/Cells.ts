@@ -1,15 +1,15 @@
 import { App } from './App';
 import { render, html } from 'uhtml';
 import { PythonCell } from "./plugins/builtin/Python/pythonCell";
-import CodeMirror from 'codemirror';
+import CodeMirror from './codemirror/codemirror';
 
-import 'codemirror/lib/codemirror.css';
+import './codemirror/codemirror.css';
 
-import 'codemirror/addon/scroll/simplescrollbars.js';
-import 'codemirror/addon/scroll/simplescrollbars.css';
+import './codemirror/addon/simplescrollbars';
+import './codemirror/addon/simplescrollbars.css';
 
-import './codemirror-modes/markdown.js';
-import './codemirror-modes/python.js';
+import './codemirror/mode/markdown.js';
+import './codemirror/mode/python.js';
 
 
 abstract class Cell {

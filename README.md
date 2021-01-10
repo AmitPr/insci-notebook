@@ -25,6 +25,7 @@ INSCI is currently in heavy development, and as such, can only be run by opening
 * Workflows for loading and saving notebooks as JSON.
 * Conversion between Jupyter and INSCI notebooks.
 * Plugin system for developers.
+* Minimize size impact of CodeMirror
 
 ## Credits
 Aside from the libraries mentioned earlier, various other packages are used to bundle INSCI. Credit goes to all authors and contributors of these packages.
