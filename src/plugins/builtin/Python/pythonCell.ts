@@ -1,4 +1,3 @@
-import { App } from "../../../App";
 import { Cell } from '../../../Cells';
 import { Notebook } from "../../../Notebook";
 import { render, html } from 'uhtml';

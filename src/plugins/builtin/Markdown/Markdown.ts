@@ -4,7 +4,7 @@ import { MarkdownCell } from "./markdownCell";
 import marked from 'marked';
 import katex from 'katex';
 
-import './Markdown.less';
+import './Markdown.css';
 
 @Plugin
 class Markdown {

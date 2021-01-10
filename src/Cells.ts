@@ -1,6 +1,4 @@
-import { App } from './App';
 import { render, html } from 'uhtml';
-import { PythonCell } from "./plugins/builtin/Python/pythonCell";
 import CodeMirror from './codemirror/codemirror';
 
 import './codemirror/codemirror.css';

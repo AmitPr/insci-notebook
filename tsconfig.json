@@ -1,14 +1,13 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
-        "sourceMap": true,
-        "module": "es6",
         "target": "es5",
-        "jsx": "react",
+        "module": "es6",
+        "strict": true,
+        "declaration": true,
         "allowJs": true,
+        "outDir": "./dist/",
         "esModuleInterop": true,
         "moduleResolution": "node",
-        "strict": true,
         "lib":["es2015", "dom"],
         "experimentalDecorators": true
     },

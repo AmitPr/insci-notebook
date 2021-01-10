@@ -55,4 +55,4 @@ web_modules/
 .yarn/install-state.gz
 yarn-error.log
 
-dist/bundle.js
+dist

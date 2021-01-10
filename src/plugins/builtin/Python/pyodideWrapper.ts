@@ -1,7 +1,6 @@
 import { initialize } from '../../../pyodide/pyodide.js';
-import { PythonCell } from './pythonCell.js';
-import { App } from '../../../App';
-import { Notebook } from '../../../Notebook.js';
+import { PythonCell } from './pythonCell';
+import { Notebook } from '../../../Notebook';
 
 declare global {
     interface Window { languagePluginUrl: string; logger: any; pyodide: any; }
