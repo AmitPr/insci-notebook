@@ -26,5 +26,8 @@
     "build": "tsc",
     "postbuild": "cd src && find . -name *.d.ts -o -name *.css -o -name codemirror.js | cpio -updm ../dist",
     "prepublish": "npm run clean && npm run build; npm run postbuild"
-  }
+  },
+  "files": [
+    "dist/"
+  ]
 }
