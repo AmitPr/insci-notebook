@@ -7,7 +7,7 @@
   "author": "Amit Prasad <17amitprasad@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/codemirror": "^0.0.105",
+    "@types/codemirror": "^0.0.106",
     "@types/marked": "^1.2.1",
     "@types/katex": "^0.11.0",
     "katex": "^0.12.0",
