@@ -1,8 +1,8 @@
-import { Cells, Cell } from "../../../Cells";
+import { Cells } from "../../../Cells";
 import { Plugin } from "../../Plugin";
 import { MarkdownCell } from "./markdownCell";
 import marked from 'marked';
-import katex from 'katex';
+//import katex from 'katex';
 
 import './Markdown.css';
 

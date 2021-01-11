@@ -22,8 +22,7 @@ class PluginLoader {
         for (const plugin of this.pl_list) {
             if (e in plugin) {
                 if(typeof plugin[e]==='function'){
-                    //Attempts to call the function specified with the arguments given, which causes the compiler to complain about types.
-                    //@ts-expect-error
+                    //@ts-expect-error Attempts to call the function specified with the arguments given, which causes the compiler to complain about types.
                     plugin[e](...args);
                 }
             }

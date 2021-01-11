@@ -35,7 +35,7 @@ class Notebook {
         const cellContainer: HTMLElement = this.createCellContainer();
         this.cells.push(this.initializeFromType(cellContainer, cellType, cellContent));
     }
-    
+
     newCell(cell: Cell | null, type: string): void {
         if (cell != null) {
             const c: Cell = this.initializeFromType(cell.container, type, cell.content);
@@ -87,12 +87,7 @@ class Notebook {
             cells: this.cells
         }
     }
-    moveCell(c: Cell, from: number, to: number): void {
-        //TODO
-        return;
-    }
     render(): void {
-        const frag: DocumentFragment = document.createDocumentFragment();
         this.cells.forEach((cell)=>{
             this.container.appendChild(cell.container);
         });
