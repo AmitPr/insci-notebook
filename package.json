@@ -1,6 +1,6 @@
 {
   "name": "insci-notebook",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/AmitPr/insci-notebook.git",
@@ -24,7 +24,7 @@
     "lint": "eslint . --ext .ts --fix",
     "clean": "rm -rf ./dist",
     "build": "tsc",
-    "postbuild": "cd src && find . -name *.d.ts -o -name *.css | cpio -updm ../dist",
-    "prepublish": "npm run clean && npm run build && npm run postbuild"
+    "postbuild": "cd src && find . -name *.d.ts -o -name *.css -o -name codemirror.js | cpio -updm ../dist",
+    "prepublish": "npm run clean && npm run build; npm run postbuild"
   }
 }

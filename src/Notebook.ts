@@ -1,7 +1,10 @@
 import { Cells, Cell } from './Cells';
 import { PluginLoader } from './plugins/Plugin';
-import { PythonCell } from './plugins/builtin/Python/pythonCell';
 import { PyodideWrapper } from './plugins/builtin/Python/pyodideWrapper';
+
+import './plugins/builtin/Python/Python';
+import './plugins/builtin/Markdown/Markdown';
+
 
 class Notebook {
     private pl: PluginLoader;
@@ -41,7 +44,7 @@ class Notebook {
             this.cells[this.cells.indexOf(cell)] = c;
         } else {
             const cellContainer: HTMLElement = this.createCellContainer();
-            const c: Cell = new PythonCell(this, cellContainer, "python", "");
+            const c: Cell = new Cells.builtins["python"](this, cellContainer, "python", "");
             this.cells.push(c);
         }
     }
