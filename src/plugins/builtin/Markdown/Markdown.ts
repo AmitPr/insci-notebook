@@ -1,4 +1,4 @@
-import { Cells } from "../../../Cells";
+import { Cells, Cell } from "../../../Cells";
 import { Plugin } from "../../Plugin";
 import { MarkdownCell } from "./markdownCell";
 import marked from 'marked';

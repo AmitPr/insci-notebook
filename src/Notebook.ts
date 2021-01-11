@@ -12,17 +12,14 @@ class Notebook {
     activeCell: Cell | null;
     pyodideWrapper: PyodideWrapper;
     container: HTMLElement;
-    typeSelector: HTMLSelectElement;
     constructor(container: HTMLElement) {
         this.pl = new PluginLoader();
+        this.pl.sendPluginEvent('preNotebookInit');
         this.cells = [];
         this.activeCell = null;
         this.pyodideWrapper = new PyodideWrapper(this);
         this.container = container;
-        this.typeSelector = document.querySelector("#cell-type") as HTMLSelectElement;
-    }
-    assertNever(t: string): never {
-        throw new Error("Unknown Cell Type: " + t);
+        this.pl.sendPluginEvent('postNotebookInit');
     }
 
     createCellContainer(): HTMLElement {
@@ -38,6 +35,7 @@ class Notebook {
         const cellContainer: HTMLElement = this.createCellContainer();
         this.cells.push(this.initializeFromType(cellContainer, cellType, cellContent));
     }
+    
     newCell(cell: Cell | null, type: string): void {
         if (cell != null) {
             const c: Cell = this.initializeFromType(cell.container, type, cell.content);
@@ -81,7 +79,7 @@ class Notebook {
         }
         this.activeCell = cell;
         this.activeCell.container.classList.add('cell-selected');
-        this.typeSelector.value = cell.type;
+        this.pl.sendPluginEvent("onSelectCell",cell);
     }
 
     toJSON(): NotebookSerialized {
