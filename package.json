@@ -23,10 +23,11 @@
   "scripts": {
     "lint": "eslint . --ext .ts --fix",
     "clean": "rm -rf ./dist",
+    "prebuild":"git submodule update --recursive --init",
     "build": "tsc",
     "docs": "typedoc --out docs src/index.ts",
     "postbuild": "cd src && find . -name *.d.ts -o -name *.css -o -name codemirror.js | cpio -updm ../dist",
-    "prepublish": "npm run clean && npm run build; npm run postbuild; npm run docs"
+    "prepublish": "npm run prebuild && npm run clean && npm run build; npm run postbuild; npm run docs"
   },
   "files": [
     "dist/",
