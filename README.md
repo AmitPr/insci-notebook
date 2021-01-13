@@ -1,6 +1,6 @@
 # INSCI-notebook  
 The \[In\]teractive \[S\]cientific \[C\]omputing \[I\]nterface  
-
+###### [Documentation](https://amitpr.github.io/insci-notebook/)
 ---
 INSCI-notebook is the backbone of the [INSCI](https://github.com/AmitPr/insci) environment. You can use this library to completely customize the function of your own notebook environment as compared to the regular INSCI environment. For developers looking to get started writing INSCI notebooks directly, see the main INSCI repository for more on the project as a whole. INSCI-notebook is a pluggable library made using Typescript. INSCI-notebook doesn't depend on any large and/or slow libraries or frameworks, and achieves it's light weight by depending upon only a few smaller libraries:
 * [pyodide](https://github.com/iodide-project/pyodide) - Python interpretor compiled to WebAssembly.
