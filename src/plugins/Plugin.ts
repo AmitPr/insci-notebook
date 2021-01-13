@@ -6,8 +6,18 @@ import { Cell } from "../Cells";
  * While plugins may find it useful to implement this interface, it is not required, and the library will be able to call these methods as long as they are defined with name and parameters equal to the ones shown here.
  */
 interface IPlugin {
+    /**
+     * Called when the Notebook is initialized, before any other actions are taken, but after all plugins have been initialized.
+     */
     preNotebookInit?(): void;
+    /**
+     * Called after the Notebook has completed initialization.
+     */
     postNotebookInit?(): void;
+    /**
+     * Called when a different cell is selected.
+     * @param cell The cell that was just selected.
+     */
     onSelectCell?(cell: Cell): void;
 }
 /**

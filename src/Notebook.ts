@@ -65,8 +65,8 @@ class Notebook {
      * @param type The type of cell as registered by Plugins.
      * @param cell A Cell to replace. *Optional.*
      */
-    newCell(type: string,cell?: Cell): void {
-        if (cell != undefined) {
+    newCell(type: string, cell?: Cell | null): void {
+        if (cell != undefined || cell != null) {
             const c: Cell = this.initializeFromType(cell.container, type, cell.content);
             this.cells[this.cells.indexOf(cell)] = c;
         } else {

@@ -1,6 +1,6 @@
 {
   "name": "insci-notebook",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "https://github.com/AmitPr/insci-notebook.git",
@@ -23,7 +23,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts --fix",
     "clean": "rm -rf ./dist",
-    "prebuild":"git submodule update --recursive --init",
+    "prebuild": "git submodule update --recursive --init",
     "build": "tsc",
     "docs": "typedoc --out docs src/index.ts",
     "postbuild": "cd src && find . -name *.d.ts -o -name *.css -o -name codemirror.js | cpio -updm ../dist",
