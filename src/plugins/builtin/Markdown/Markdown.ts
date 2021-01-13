@@ -5,9 +5,19 @@ import marked from 'marked';
 //import katex from 'katex';
 
 import './Markdown.css';
-
+/**
+ * Builtin Markdown Cell Plugin.
+ */
 @Plugin
 class Markdown implements IPlugin{
+    /**
+     * Transforms a markdown string into the html representation using `marked`.
+     * 
+     * @remarks
+     * If the `content` parameter is empty, the function will return `*Empty Markdown String*`'s html representation.
+     * 
+     * @param content The content to format to markdown.
+     */
     static format(content: string): string {
         let formatted: string;
         if (!content) {
@@ -17,6 +27,9 @@ class Markdown implements IPlugin{
         }
         return formatted;
     }
+    /**
+     * Registers the markdown cell in the [[Cells]] builtin list.
+     */
     constructor() {
         Cells.builtins["markdown"] = MarkdownCell;
     }
