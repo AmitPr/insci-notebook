@@ -1,5 +1,5 @@
 import { Cells } from "../../../Cells";
-import { Plugin } from "../../Plugin";
+import { Plugin, IPlugin} from "../../Plugin";
 import { MarkdownCell } from "./markdownCell";
 import marked from 'marked';
 //import katex from 'katex';
@@ -7,7 +7,7 @@ import marked from 'marked';
 import './Markdown.css';
 
 @Plugin
-class Markdown {
+class Markdown implements IPlugin{
     static format(content: string): string {
         let formatted: string;
         if (!content) {

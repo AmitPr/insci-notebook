@@ -1,24 +1,26 @@
 import { Cell } from "../Cells";
 interface IPlugin {
-    new(...args: unknown[]): any;
     preNotebookInit?(): void;
     postNotebookInit?(): void;
     onSelectCell?(cell: Cell): void;
 }
+interface IPluginInternal extends IPlugin{
+    new(...args: unknown[]): any;
+}
 
-function Plugin<T extends IPlugin>(target: T): void {
+function Plugin<T extends IPluginInternal>(target: T): void {
     PluginLoader.plugins.push(target);
 }
 
 class PluginLoader {
-    public static plugins: IPlugin[] = [];
-    private pl_list: IPlugin[] = []
+    public static plugins: IPluginInternal[] = [];
+    private pl_list: IPluginInternal[] = []
     constructor() {
         for (const plugin of PluginLoader.plugins) {
             this.pl_list.push(new plugin());
         }
     }
-    sendPluginEvent(e: keyof IPlugin, ...args: any[]): void {
+    sendPluginEvent(e: keyof IPluginInternal, ...args: any[]): void {
         for (const plugin of this.pl_list) {
             if (e in plugin) {
                 if(typeof plugin[e]==='function'){

@@ -1,9 +1,9 @@
 import { Cells } from "../../../Cells";
-import { Plugin } from "../../Plugin";
+import { IPlugin, Plugin } from "../../Plugin";
 import { PythonCell } from "./pythonCell";
 
 @Plugin
-class Python {
+class Python implements IPlugin {
     constructor() {
         Cells.builtins["python"] = PythonCell;
     }
